@@ -13,6 +13,9 @@ export default function HomePage() {
   const redirect1 = () => {
     router.push('/curated-list');
   };
+  const redirect3 = () => {
+    router.push('/Project-Overview');
+  };
 
   // Animation variants
   const fadeIn = {
@@ -66,19 +69,20 @@ export default function HomePage() {
           </motion.div>
 
           {/* Interactive section */}
-          <div className="grid md:grid-cols-2 gap-6 text-left">
+          {/* ------------------------------------------------------- */}
+          <div className="grid md:grid-cols-3 gap-6 text-left">
             <motion.div
               variants={fadeIn}
               className="p-6 border border-cyan-400/20 rounded-lg bg-zinc-800/50 backdrop-blur-sm"
               whileHover={{ scale: 1.01, transition: { duration: 0.2 } }}
             >
-              <h3 className="text-yellow-500 text-lg font-mono mb-4">Molecular Interface</h3>
-              <p className="text-gray-300 mb-4">
-                Not all molecules are compatible. <br />
-                Select from a curated list.
-              </p>
+              <h3 className="text-yellow-500 text-lg font-mono mb-4">Project Overview</h3>
+                <p className="text-gray-300 mb-4 font-serif tracking-wide">
+                  Discover the team behind this innovation<br/>
+                  <span>More BTS and process here</span>
+                </p>
               <motion.button
-                onClick={redirect1}
+                onClick={redirect3}
                 className="px-4 py-2 bg-yellow-600 text-white rounded-md font-medium transition-colors"
                 whileHover={{ backgroundColor: "#b45309", scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -86,17 +90,37 @@ export default function HomePage() {
                 Click here
               </motion.button>
             </motion.div>
-
+            {/* ------------------------------------------------------- */}
+            <motion.div
+              variants={fadeIn}
+              className="p-6 border border-cyan-400/20 rounded-lg bg-zinc-800/50 backdrop-blur-sm"
+              whileHover={{ scale: 1.01, transition: { duration: 0.2 } }}
+            >
+              <h3 className="text-yellow-600 text-lg font-mono mb-4">Molecular Interface</h3>
+              <p className="text-gray-300 mb-4">
+                Not all molecules are compatible. <br />
+                Select from a curated list.
+              </p>
+              <motion.button
+                onClick={redirect1}
+                className="px-4 py-2 bg-orange-500 text-white rounded-md font-medium transition-colors"
+                whileHover={{ backgroundColor: "#b45309", scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Click here
+              </motion.button>
+            </motion.div>
+            {/* ---------------------------------------------------------- */}
             <motion.div
               variants={fadeIn}
               className="p-6 border border-cyan-400/20 rounded-lg bg-zinc-800/50 backdrop-blur-sm"
               whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
             >
-              <h3 className="text-orange-400 text-lg font-mono mb-4">Simulation Core</h3>
+              <h3 className="text-orange-500 text-lg font-mono mb-4">Simulation Core</h3>
               <div className="space-y-4">
                 <motion.button
                   onClick={redirect2}
-                  className="w-full px-4 py-2 bg-orange-500 rounded-md font-medium transition-colors"
+                  className="w-full px-4 py-2 bg-orange-600 rounded-md font-medium transition-colors"
                   whileHover={{ backgroundColor: "#c2410c", scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -111,6 +135,7 @@ export default function HomePage() {
                 </motion.button>
               </div>
             </motion.div>
+            {/* ---------------------------------------------------------- */}
           </div>
 
           {/* Footer text */}
