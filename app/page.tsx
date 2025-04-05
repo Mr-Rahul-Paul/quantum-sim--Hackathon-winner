@@ -4,11 +4,11 @@ import { useRouter } from 'next/navigation';
 export default function HomePage() {
   const router = useRouter();
 
-  const redirect1 = () => {
+  const redirect2 = () => {
     router.push('/simulation');
   };
 
-  const redirect2 = () => {
+  const redirect1 = () => {
     router.push('/curated-list');
   };
 
