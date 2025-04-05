@@ -66,7 +66,7 @@ export default function HomePage() {
 
           {/* Footer text */}
           <p className="text-gray-400 text-sm mt-8">
-            VQE simulation • HackIIIT • Team - Bytes  • <a className='underline ' href='https://github.com/Qiskit/textbook/blob/main/notebooks/ch-applications/vqe-molecules.ipynb '>Click here to read reaseach paper</a>
+            VQE simulation • HackIIIT • Team - Bytes  • <a className='no-underline hover:underline ' href='https://github.com/Qiskit/textbook/blob/main/notebooks/ch-applications/vqe-molecules.ipynb '>Click here to read reaseach paper 📃</a>
           </p>
         </div>
       </main>

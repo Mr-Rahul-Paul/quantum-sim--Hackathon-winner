@@ -160,9 +160,11 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col items-center min-h-screen p-4 bg-gray-900 text-white">
-      <h1 className="text-3xl font-bold mb-6">Quantum Chemistry Simulator</h1>
-
+    <div className="flex flex-col items-center min-h-screen bg-black text-white relative overflow-hidden">
+        <h1 className="text-4xl md:text-6xl font-bold mb-4 ">
+            Quantum chemistry Simulator 
+          </h1>
+        
       <div className="w-full max-w-4xl space-y-6">
         {/* Input Form */}
         <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
@@ -200,7 +202,7 @@ export default function Home() {
           </div>
 
           <button
-            className={`w-full p-3 rounded font-medium ${loading ? "bg-blue-400" : "bg-blue-600 hover:bg-blue-500"
+            className={`w-full p-3 rounded font-medium ${loading ? "bg-grey-400" : "bg-grey-600 hover:bg-grey-500"
               }`}
             onClick={handleSimulate}
             disabled={loading}
