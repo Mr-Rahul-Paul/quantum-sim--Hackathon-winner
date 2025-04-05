@@ -26,7 +26,7 @@ export default function HomePage() {
         <div className="max-w-4xl space-y-8">
           <div className="space-y-4 ">
             <h2 className="text-2xl md:text-3xl font-semibold bg-gradient-to-r from-yellow-400 to-red-500 bg-clip-text text-transparent">
-              ( Start simulating now! )
+              [ Start simulating now! ]
             </h2>
             <p className="text-orange-300 text-sm leading-relaxed">
               *Not all molecules are compatible • GET Started with materials
@@ -35,19 +35,19 @@ export default function HomePage() {
 
           {/* Interactive section */}
           <div className="grid md:grid-cols-2 gap-6 text-left">
-            <div className="p-6 border border-cyan-400/20 rounded-lg bg-gray-800/50 backdrop-blur-sm">
-              <h3 className="text-yellow-400 text-lg font-mono mb-4">Molecular Interface</h3>
+            <div className="p-6 border border-cyan-400/20 rounded-lg bg-zinc-800/50 backdrop-blur-sm">
+              <h3 className="text-yellow-500 text-lg font-mono mb-4">Molecular Interface</h3>
               <p className="text-gray-300 mb-4">
                 How No A Molecule are<br/>
                 Read & intime disk
               </p>
               {/* on click redirect to /simulation */}
-                <button onClick={redirect} className="px-4 py-2 bg-yellow-500  text-white rounded-md font-medium transition-colors hover">
+                <button onClick={redirect} className="px-4 py-2 bg-yellow-600  text-white rounded-md font-medium transition-colors hover">
                 Click here
                 </button>
             </div>
 
-            <div className="p-6 border border-cyan-400/20 rounded-lg bg-gray-800/50 backdrop-blur-sm">
+            <div className="p-6 border border-cyan-400/20 rounded-lg bg-zinc-800/50 backdrop-blur-sm">
               <h3 className="text-orange-400 text-lg font-mono mb-4">Simulation Core</h3>
               <div className="space-y-4">
                 <button className="w-full px-4 py-2 bg-orange-500  rounded-md font-medium transition-colors">
@@ -62,7 +62,7 @@ export default function HomePage() {
 
           {/* Footer text */}
           <p className="text-gray-400 text-sm mt-8">
-            Team - Bytes • HackIIIT • • <a className='underline ' href='https://github.com/Qiskit/textbook/blob/main/notebooks/ch-applications/vqe-molecules.ipynb '>click here to read reaseach paper</a>
+            VQE simulation • HackIIIT • Team - Bytes  • <a className='underline ' href='https://github.com/Qiskit/textbook/blob/main/notebooks/ch-applications/vqe-molecules.ipynb '>Click here to read reaseach paper</a>
           </p>
         </div>
       </main>
