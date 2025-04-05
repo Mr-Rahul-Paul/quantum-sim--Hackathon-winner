@@ -1,6 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useState } from "react";
+import Link from 'next/link';
 
 // Define proper types for the data
 interface Atom {
@@ -80,41 +82,44 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-800 via-gray-900 to-black text-gray-100 p-6">
-      <header className="mb-8 text-center">
-        <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-yellow-400 to-red-500 bg-clip-text text-transparent">Quantum Chemistry Lab</h1>
-        <p className="text-gray-300">Simulate molecular properties with classical and quantum methods</p>
-      </header>
+    <main className="flex min-h-screen flex-col items-center p-6 md:p-24">
+      <div className="z-10 max-w-6xl w-full">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-amber-500 to-red-500 bg-clip-text text-transparent">
+          Quantum Chemistry Lab
+        </h1>
+        <p className="text-2xl md:text-lg mb-10 max-w-3xl text-foreground/80 border-l-4 border-orange-500/50 pl-4">
+          Simulate molecular properties with classical and quantum methods. Design molecules and analyze their energy characteristics.
+        </p>
+        <h2 className="text-2xl font-semibold mb-4 text-orange-500 flex items-center">
+          <span className="mr-2">🧪</span> Molecular Configuration
+        </h2>
+        <div className="rounded-lg p-6 mb-8 transition-all duration-300 bg-background text-foreground border border-orange-500/30 shadow-sm">
 
-      <div className="max-w-6xl mx-auto space-y-8">
-        <div className="bg-gray-800 rounded-xl shadow-2xl p-6 border border-cyan-400/20 backdrop-blur-sm">
-          <h2 className="text-2xl font-semibold mb-4 text-orange-400 flex items-center">
-            <span className="mr-2">🧪</span> Molecular Configuration
-          </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-300">Total Charge</label>
+              <label className="block text-sm font-medium text-foreground/70">Total Charge</label>
               <input
                 type="number"
-                className="w-full bg-gray-700 text-white p-2 rounded-lg border border-gray-600 focus:ring-2 focus:ring-orange-500"
+                className="w-full bg-background text-foreground p-2 rounded-lg border border-orange-500/30 focus:ring-2 focus:ring-orange-500"
                 value={charge}
                 onChange={(e) => setCharge(parseInt(e.target.value) || 0)}
               />
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-300">Spin Multiplicity</label>
+              <label className="block text-sm font-medium text-foreground/70">Spin Multiplicity</label>
               <input
                 type="number"
-                className="w-full bg-gray-700 text-white p-2 rounded-lg border border-gray-600 focus:ring-2 focus:ring-orange-500"
+                className="w-full bg-background text-foreground p-2 rounded-lg border border-orange-500/30 focus:ring-2 focus:ring-orange-500"
                 value={spin}
                 onChange={(e) => setSpin(parseInt(e.target.value) || 0)}
               />
             </div>
-            <div className="md:col-span-2 flex items-end">
+            <div className="space-y-2">
+              <label className="block text-sm font-medium text-foreground/70">Molecule Structure</label>
               <button
                 onClick={addAtom}
-                className="w-full bg-orange-600 hover:bg-orange-500 text-white py-2 px-4 rounded-lg transition flex items-center justify-center"
+                className="w-full bg-orange-500 text-white py-2 px-4 rounded-lg transition flex items-center justify-center"
               >
                 <span className="mr-2">+</span> Add Atom
               </button>
@@ -122,13 +127,13 @@ export default function Home() {
           </div>
 
           <div className="space-y-4 mb-6">
-            <h3 className="text-lg font-medium text-orange-300">Atoms</h3>
+            <h3 className="text-lg font-medium text-orange-500">Atoms</h3>
             {atoms.map((atom, index) => (
-              <div key={index} className="grid grid-cols-12 gap-3 items-center bg-gray-750 p-3 rounded-lg">
+              <div key={index} className="grid grid-cols-12 gap-3 items-center bg-background p-3 rounded-lg border border-orange-500/20">
                 <div className="col-span-2">
                   <input
                     type="text"
-                    className="w-full bg-gray-700 text-white p-2 rounded border border-gray-600"
+                    className="w-full bg-background text-foreground p-2 rounded border border-orange-500/30"
                     value={atom.element}
                     onChange={(e) => handleAtomChange(index, 'element', e.target.value)}
                     placeholder="Element"
@@ -138,7 +143,7 @@ export default function Home() {
                   <input
                     type="number"
                     step="0.01"
-                    className="w-full bg-gray-700 text-white p-2 rounded border border-gray-600"
+                    className="w-full bg-background text-foreground p-2 rounded border border-orange-500/30"
                     value={atom.x}
                     onChange={(e) => handleAtomChange(index, 'x', e.target.value)}
                     placeholder="X (Å)"
@@ -148,7 +153,7 @@ export default function Home() {
                   <input
                     type="number"
                     step="0.01"
-                    className="w-full bg-gray-700 text-white p-2 rounded border border-gray-600"
+                    className="w-full bg-background text-foreground p-2 rounded border border-orange-500/30"
                     value={atom.y}
                     onChange={(e) => handleAtomChange(index, 'y', e.target.value)}
                     placeholder="Y (Å)"
@@ -158,16 +163,16 @@ export default function Home() {
                   <input
                     type="number"
                     step="0.01"
-                    className="w-full bg-gray-700 text-white p-2 rounded border border-gray-600"
+                    className="w-full bg-background text-foreground p-2 rounded border border-orange-500/30"
                     value={atom.z}
                     onChange={(e) => handleAtomChange(index, 'z', e.target.value)}
                     placeholder="Z (Å)"
                   />
                 </div>
-                <div className="col-span-2">
+                <div className="col-span-4 md:col-span-2">
                   <button
                     onClick={() => removeAtom(index)}
-                    className="w-full bg-rose-600 hover:bg-rose-500 text-white py-2 px-3 rounded transition"
+                    className="w-full bg-red-600 text-white py-2 px-3 rounded transition"
                     disabled={atoms.length <= 1}
                   >
                     Remove
@@ -181,8 +186,8 @@ export default function Home() {
             onClick={handleSimulate}
             disabled={loading}
             className={`w-full py-3 px-4 rounded-xl font-medium transition ${loading
-                ? "bg-orange-400 cursor-not-allowed"
-                : "bg-orange-600 hover:bg-orange-500 shadow-lg"
+              ? "bg-orange-400 cursor-not-allowed"
+              : "bg-orange-600 hover:bg-orange-500 shadow-lg"
               } flex items-center justify-center`}
           >
             {loading ? (
@@ -200,13 +205,13 @@ export default function Home() {
         </div>
 
         {error && (
-          <div className="bg-red-900/50 border border-red-700 rounded-xl p-4">
-            <h3 className="font-bold text-red-300 flex items-center">
+          <div className="rounded-lg p-6 mb-8 transition-all duration-300 bg-rose-950/20 text-foreground border border-rose-500/30 shadow-sm">
+            <h3 className="text-xl font-semibold mb-2 text-rose-500 flex items-center">
               <span className="mr-2">⚠</span> Error
             </h3>
-            <p className="text-red-100">{error}</p>
+            <p className="text-foreground/80">{error}</p>
             {results?.suggestion && (
-              <p className="mt-2 text-red-200">{results.suggestion}</p>
+              <p className="mt-2 text-foreground/80">{results.suggestion}</p>
             )}
           </div>
         )}
@@ -214,48 +219,48 @@ export default function Home() {
         {results?.status === "success" && (
           <div className="space-y-6">
             {results.source === "cache" && (
-              <div className="bg-amber-900/50 border border-amber-700 rounded-xl p-3 text-center text-amber-100">
+              <div className="rounded-lg p-3 mb-8 transition-all duration-300 bg-amber-950/20 text-foreground border border-amber-500/30 text-center shadow-sm">
                 ⏳ These results were loaded from cache ({results.cached_at ? new Date(results.cached_at).toLocaleString() : ''})
               </div>
             )}
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <div className="bg-gray-800 rounded-xl shadow-lg p-6 border border-cyan-400/20">
-                <h2 className="text-2xl font-semibold mb-4 text-yellow-500 flex items-center">
+              <div className="rounded-lg p-6 mb-8 transition-all duration-300 bg-background hover:bg-gradient-to-br hover:from-orange-500/5 hover:to-red-500/10 text-foreground border border-orange-500/30 shadow-sm">
+                <h2 className="text-2xl font-semibold mb-4 text-orange-500 flex items-center">
                   <span className="mr-2">📊</span> Simulation Results
                 </h2>
 
                 <div className="space-y-4">
-                  <div className="flex justify-between py-2 border-b border-gray-700">
-                    <span className="text-gray-300">Molecule:</span>
-                    <span className="font-mono text-white">{results.molecule_name}</span>
+                  <div className="flex justify-between py-2 border-b border-foreground/20">
+                    <span className="text-foreground/70">Molecule:</span>
+                    <span className="font-mono text-foreground">{results.molecule_name}</span>
                   </div>
-                  <div className="flex justify-between py-2 border-b border-gray-700">
-                    <span className="text-gray-300">Qubits Required:</span>
-                    <span className="font-mono text-white">{results.qubit_count}</span>
+                  <div className="flex justify-between py-2 border-b border-foreground/20">
+                    <span className="text-foreground/70">Qubits Required:</span>
+                    <span className="font-mono text-foreground">{results.qubit_count}</span>
                   </div>
-                  <div className="flex justify-between py-2 border-b border-gray-700">
-                    <span className="text-gray-300">Method Used:</span>
-                    <span className="font-mono text-purple-300">{results.ansatz_type}</span>
+                  <div className="flex justify-between py-2 border-b border-foreground/20">
+                    <span className="text-foreground/70">Method Used:</span>
+                    <span className="font-mono text-orange-500">{results.ansatz_type}</span>
                   </div>
 
                   <div className="pt-4 space-y-3">
                     <div className="flex justify-between">
-                      <span className="text-gray-300">Exact Energy:</span>
-                      <span className="font-mono text-blue-300">
+                      <span className="text-foreground/70">Exact Energy:</span>
+                      <span className="font-mono text-blue-500">
                         {results.exact_energy?.toFixed(6)} Hartree
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-300">VQE Energy:</span>
-                      <span className="font-mono text-green-300">
+                      <span className="text-foreground/70">VQE Energy:</span>
+                      <span className="font-mono text-green-500">
                         {results.vqe_energy?.toFixed(6)} Hartree
                       </span>
                     </div>
                     {results.exact_energy !== undefined && results.vqe_energy !== undefined && (
-                      <div className="flex justify-between pt-2 border-t border-gray-700 font-medium">
-                        <span className="text-gray-300">Difference:</span>
-                        <span className="font-mono text-amber-300">
+                      <div className="flex justify-between pt-2 border-t border-foreground/20 font-medium">
+                        <span className="text-foreground/70">Difference:</span>
+                        <span className="font-mono text-amber-500">
                           {Math.abs(results.exact_energy - results.vqe_energy).toFixed(6)} Hartree
                         </span>
                       </div>
@@ -264,8 +269,8 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="bg-gray-800 rounded-xl shadow-lg p-6 border border-cyan-400/20">
-                <h2 className="text-2xl font-semibold mb-4 text-orange-400 flex items-center">
+              <div className="rounded-lg p-6 mb-8 transition-all duration-300 bg-background hover:bg-gradient-to-br hover:from-orange-500/5 hover:to-red-500/10 text-foreground border border-orange-500/30 shadow-sm">
+                <h2 className="text-2xl font-semibold mb-4 text-orange-500 flex items-center">
                   <span className="mr-2">🔬</span> Molecular Structure
                 </h2>
                 {results.molecule_image ? (
@@ -273,23 +278,23 @@ export default function Home() {
                     <img
                       src={`data:image/png;base64,${results.molecule_image}`}
                       alt={results.molecule_name || "Molecule structure"}
-                      className="max-w-full h-64 object-contain border border-gray-700 rounded-lg bg-black"
+                      className="max-w-full h-64 object-contain border border-orange-500/20 rounded-lg bg-background"
                     />
-                    <p className="mt-3 text-sm text-gray-400">
+                    <p className="mt-3 text-sm text-foreground/60">
                       Contains: {results.elements?.join(", ")}
                     </p>
                   </div>
                 ) : (
-                  <div className="h-64 flex items-center justify-center bg-gray-850 rounded-lg">
-                    <p className="text-gray-500">No visualization available</p>
+                  <div className="h-64 flex items-center justify-center bg-background rounded-lg border border-orange-500/20">
+                    <p className="text-foreground/50">No visualization available</p>
                   </div>
                 )}
               </div>
             </div>
 
             {/* Energy Plot Section */}
-            <div className="bg-gray-800 rounded-xl shadow-lg p-6 border border-cyan-400/20">
-              <h2 className="text-2xl font-semibold mb-4 text-yellow-500 flex items-center">
+            <div className="rounded-lg p-6 mb-8 transition-all duration-300 bg-background hover:bg-gradient-to-br hover:from-orange-500/5 hover:to-red-500/10 text-foreground border border-orange-500/30 shadow-sm">
+              <h2 className="text-2xl font-semibold mb-4 text-orange-500 flex items-center">
                 <span className="mr-2">📈</span> Energy Analysis
               </h2>
               {results.energy_plot ? (
@@ -297,25 +302,37 @@ export default function Home() {
                   <img
                     src={`data:image/png;base64,${results.energy_plot}`}
                     alt="Energy vs Bond Distance"
-                    className="w-full h-96 object-contain border border-gray-700 rounded-lg bg-black p-4"
+                    className="w-full h-96 object-contain border border-orange-500/20 rounded-lg bg-background p-4"
                   />
-                  <p className="mt-3 text-sm text-gray-400">
+                  <p className="mt-3 text-sm text-foreground/60">
                     Energy comparison across different bond distances
                   </p>
                 </div>
               ) : (
-                <div className="h-64 flex items-center justify-center bg-gray-850 rounded-lg">
-                  <p className="text-gray-500">Energy plot not available</p>
+                <div className="h-64 flex items-center justify-center bg-background rounded-lg border border-orange-500/20">
+                  <p className="text-foreground/50">Energy plot not available</p>
                 </div>
               )}
             </div>
           </div>
         )}
-      </div>
 
-      <footer className="mt-12 text-center text-gray-500 text-sm">
-        <p>Quantum Chemistry Simulator • {new Date().getFullYear()}</p>
-      </footer>
-    </div>
+        {/* Navigation back to previous pages */}
+        <div className="mt-12 pt-6 border-t border-foreground/20">
+          <div className="flex justify-between w-full">
+            <Link href="/curated-list" className="text-foreground/60 hover:text-foreground transition-colors">
+              &larr; Back to Curated List
+            </Link>
+            <Link href="/project-overview" className="text-foreground/60 hover:text-foreground transition-colors">
+              Project Overview &rarr;
+            </Link>
+          </div>
+        </div>
+
+        <div className="text-foreground/40 text-sm mt-8 justify-center text-center" >
+          • HackIIIT • Team - Bytes  • <a className='underline hover:no-underline hover:font-bold' href='https://github.com/Qiskit/textbook/blob/main/notebooks/ch-applications/vqe-molecules.ipynb'>Click here to read research paper 📃</a>
+        </div>
+      </div>
+    </main>
   );
 }
