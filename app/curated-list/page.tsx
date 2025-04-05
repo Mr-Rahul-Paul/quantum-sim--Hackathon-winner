@@ -37,6 +37,7 @@ const placeholderItems: CuratedItem[] = [
 ]
 
 export default function CuratedListPage() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [items, setItems] = useState<CuratedItem[]>(placeholderItems)
   const [activeCategory, setActiveCategory] = useState<string | null>(null)
 

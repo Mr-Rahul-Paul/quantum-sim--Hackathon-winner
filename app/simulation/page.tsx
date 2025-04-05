@@ -40,9 +40,11 @@ export default function Home() {
 
   const handleAtomChange = (index: number, field: keyof Atom, value: string) => {
     const newAtoms = [...atoms];
-    newAtoms[index][field] = field === 'element' 
-      ? value 
-      : parseFloat(value) || 0; // Provide fallback for NaN
+    if (field === 'element') {
+      newAtoms[index][field] = value as string;
+    } else {
+      newAtoms[index][field] = parseFloat(value) || 0 as number;
+    }
     setAtoms(newAtoms);
   };
 
@@ -71,7 +73,7 @@ export default function Home() {
       if (data.error) setError(data.error);
       else setResults(data);
     } catch (err) {
-      setError("Server connection failed");
+      console.log(err);
     } finally {
       setLoading(false);
     }
