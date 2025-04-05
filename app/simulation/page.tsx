@@ -10,7 +10,6 @@ import {
   PointElement,
   Tooltip,
   Legend,
-  // TooltipItem,
 } from "chart.js";
 
 // Register ChartJS components
@@ -161,145 +160,156 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col items-center min-h-screen bg-black text-white relative overflow-hidden">
-      <h1 className="text-4xl md:text-6xl font-bold mb-4 ">
-        Quantum chemistry Simulator
-      </h1>
+    <div className="flex min-h-screen flex-col items-center p-6 md:p-24">
+      <div className="z-10 max-w-5xl w-full">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-amber-500 to-red-500 bg-clip-text text-transparent">
+          Quantum Chemistry Simulator
+        </h1>
+        <p className="text-2xl md:text-lg mb-10 max-w-3xl text-foreground/80 border-l-4 border-orange-500/50 pl-4">
+          Simulate quantum chemistry experiments and visualize the results using VQE algorithms.
+        </p>
 
-      <div className="w-full max-w-4xl space-y-6">
-        {/* Input Form */}
-        <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
-          <div className="grid grid-cols-2 gap-4 mb-4">
-            <div>
-              <label className="block text-sm font-medium mb-1">Element 1</label>
-              <input
-                type="text"
-                className="w-full p-2 text-black rounded"
-                value={element1}
-                onChange={(e) => setElement1(e.target.value)}
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium mb-1">Element 2</label>
-              <input
-                type="text"
-                className="w-full p-2 text-black rounded"
-                value={element2}
-                onChange={(e) => setElement2(e.target.value)}
-              />
-            </div>
-          </div>
-
-          <div className="mb-4">
-            <label className="block text-sm font-medium mb-1">Distance (Å)</label>
-            <input
-              type="number"
-              step="0.01"
-              min="0.1"
-              className="w-full p-2 text-black rounded"
-              value={distance}
-              onChange={(e) => setDistance(parseFloat(e.target.value))}
-            />
-          </div>
-
-          <button
-            className={`w-full p-3 rounded font-medium ${loading ? "bg-grey-400" : "bg-grey-600 hover:bg-grey-500"
-              }`}
-            onClick={handleSimulate}
-            disabled={loading}
-          >
-            {loading ? "Running Quantum Simulation..." : "Run Simulation"}
-          </button>
-        </div>
-
-        {/* Results Section */}
-        {error && (
-          <div className="p-4 bg-red-800 rounded">
-            <h3 className="font-bold">Error</h3>
-            <p>{error}</p>
-            {results?.suggestion && <p className="mt-2">{results.suggestion}</p>}
-          </div>
-        )}
-
-        {results?.status === "success" && (
-          <div className="space-y-6">
-            {/* Source Indicator */}
-            {results.source === "cache" && (
-              <div className="bg-yellow-800 p-3 rounded text-center">
-                These results were loaded from cache ({results.cached_at ? new Date(results.cached_at).toLocaleString() : "Unknown time"})
+        <div className="w-full flex items-center justify-center ">
+          {/* Input Form */}
+          <div className="p-6 border border-cyan-400/20 rounded-lg bg-zinc-800/50 backdrop-blur-sm">
+            <h2 className="text-xl font-semibold mb-4 text-orange-400">Molecule Configuration</h2>
+            <div className="grid grid-cols-2 gap-4 mb-4">
+              <div>
+                <label className="block text-sm font-medium mb-1">Element 1</label>
+                <input
+                  type="text"
+                  className="w-full p-2 text-black rounded bg-zinc-100"
+                  value={element1}
+                  onChange={(e) => setElement1(e.target.value)}
+                />
               </div>
-            )}
+              <div>
+                <label className="block text-sm font-medium mb-1">Element 2</label>
+                <input
+                  type="text"
+                  className="w-full p-2 text-black rounded bg-zinc-100"
+                  value={element2}
+                  onChange={(e) => setElement2(e.target.value)}
+                />
+              </div>
+            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Numerical Results */}
-              <div className="bg-gray-800 p-6 rounded-lg">
-                <h2 className="text-xl font-bold mb-4">Simulation Results</h2>
+            <div className="mb-4">
+              <label className="block text-sm font-medium mb-1">Distance (Å)</label>
+              <input
+                type="number"
+                step="0.01"
+                min="0.1"
+                className="w-full p-2 text-black rounded bg-zinc-100"
+                value={distance}
+                onChange={(e) => setDistance(parseFloat(e.target.value))}
+              />
+            </div>
 
-                <div className="space-y-4">
-                  <div className="flex justify-between">
-                    <span>Molecule:</span>
-                    <span className="font-mono">{element1}-{element2}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Distance:</span>
-                    <span className="font-mono">{distance} Å</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Method used:</span>
-                    <span className="font-mono">{results.ansatz_type}</span>
-                  </div>
-                  <div className="pt-4 border-t border-gray-700">
-                    <div className="flex justify-between text-blue-300">
-                      <span>Exact Energy:</span>
-                      <span className="font-mono">{results.exact_energy?.toFixed(6)} Hartree</span>
+            <div className="flex justify-center">
+              <button
+              className={`w-1/3 flex items-center justify-center px-4 py-2 rounded-full font-medium transition-colors ${
+                loading 
+                ? "bg-gray-500 cursor-not-allowed" 
+                : "bg-orange-500 hover:bg-orange-600 text-white"
+              }`}
+              onClick={handleSimulate}
+              disabled={loading}
+              >
+              {loading ? "Running Quantum Simulation..." : "Run Simulation"}
+              </button>
+            </div>
+          </div>
+
+          {/* Results Section */}
+          {error && (
+            <div className="p-6 border border-red-500/50 rounded-lg bg-zinc-800/50 backdrop-blur-sm">
+              <h3 className="font-bold text-red-400">Error</h3>
+              <p>{error}</p>
+              {results?.suggestion && <p className="mt-2 text-yellow-400">{results.suggestion}</p>}
+            </div>
+          )}
+
+          {results?.status === "success" && (
+            <div className="space-y-6">
+              {/* Source Indicator */}
+              {results.source === "cache" && (
+                <div className="p-3 rounded-full bg-yellow-600/20 border border-yellow-500/50 text-center text-yellow-300">
+                  These results were loaded from cache ({results.cached_at ? new Date(results.cached_at).toLocaleString() : "Unknown time"})
+                </div>
+              )}
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Numerical Results */}
+                <div className="p-6 border border-cyan-400/20 rounded-lg bg-zinc-800/50 backdrop-blur-sm">
+                  <h2 className="text-xl font-semibold mb-4 text-yellow-500">Simulation Results</h2>
+
+                  <div className="space-y-4">
+                    <div className="flex justify-between">
+                      <span>Molecule:</span>
+                      <span className="font-mono">{element1}-{element2}</span>
                     </div>
-                    <div className="flex justify-between text-green-300">
-                      <span>VQE Energy:</span>
-                      <span className="font-mono">{results.vqe_energy?.toFixed(6)} Hartree</span>
+                    <div className="flex justify-between">
+                      <span>Distance:</span>
+                      <span className="font-mono">{distance} Å</span>
                     </div>
-                  </div>
-                  {results.exact_energy && results.vqe_energy && (
+                    <div className="flex justify-between">
+                      <span>Method used:</span>
+                      <span className="font-mono">{results.ansatz_type}</span>
+                    </div>
                     <div className="pt-4 border-t border-gray-700">
-                      <div className="flex justify-between">
-                        <span>Energy Difference:</span>
-                        <span className="font-mono">
-                          {Math.abs(results.exact_energy - results.vqe_energy).toFixed(6)} Hartree
-                        </span>
+                      <div className="flex justify-between text-blue-300">
+                        <span>Exact Energy:</span>
+                        <span className="font-mono">{results.exact_energy?.toFixed(6)} Hartree</span>
+                      </div>
+                      <div className="flex justify-between text-green-300">
+                        <span>VQE Energy:</span>
+                        <span className="font-mono">{results.vqe_energy?.toFixed(6)} Hartree</span>
                       </div>
                     </div>
+                    {results.exact_energy && results.vqe_energy && (
+                      <div className="pt-4 border-t border-gray-700">
+                        <div className="flex justify-between">
+                          <span>Energy Difference:</span>
+                          <span className="font-mono">
+                            {Math.abs(results.exact_energy - results.vqe_energy).toFixed(6)} Hartree
+                          </span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Molecule Visualization */}
+                <div className="p-6 border border-cyan-400/20 rounded-lg bg-zinc-800/50 backdrop-blur-sm">
+                  <h2 className="text-xl font-semibold mb-4 text-orange-400">Molecule Structure</h2>
+                  {results.molecule_image ? (
+                    <div className="flex flex-col items-center">
+                      <img src={`data:image/png;base64,${results.molecule_image}`} alt={`${element1}-${element2} molecule`} className="max-w-full h-auto border border-gray-600 rounded" />
+                      <p className="mt-2 text-sm text-gray-400">
+                        {element1}-{element2} at {distance} Å
+                      </p>
+                    </div>
+                  ) : (
+                    <p className="text-gray-400">No structure available</p>
                   )}
                 </div>
               </div>
 
-              {/* Molecule Visualization */}
-              <div className="bg-gray-800 p-6 rounded-lg">
-                <h2 className="text-xl font-bold mb-4">Molecule Structure</h2>
-                {results.molecule_image ? (
-                  <div className="flex flex-col items-center">
-                    <img src={`data:image/png;base64,${results.molecule_image}`} alt={`${element1}-${element2} molecule`} className="max-w-full h-auto border border-gray-600 rounded" />
-                    <p className="mt-2 text-sm text-gray-400">
-                      {element1}-{element2} at {distance} Å
-                    </p>
+              {/* Energy Curve Visualization */}
+              <div className="p-6 border border-cyan-400/20 rounded-lg bg-zinc-800/50 backdrop-blur-sm">
+                <h2 className="text-xl font-semibold mb-4 text-yellow-500">Energy Curve</h2>
+                {energyData.length > 0 ? (
+                  <div className="h-64">
+                    <Line data={chartData} options={chartOptions} />
                   </div>
                 ) : (
-                  <p className="text-gray-400">No structure available</p>
+                  <p className="text-gray-400">Run simulation to generate energy curve</p>
                 )}
               </div>
             </div>
-
-            {/* Energy Curve Visualization */}
-            <div className="bg-gray-800 p-6 rounded-lg">
-              <h2 className="text-xl font-bold mb-4">Energy Curve</h2>
-              {energyData.length > 0 ? (
-                <div className="h-64">
-                  <Line data={chartData} options={chartOptions} />
-                </div>
-              ) : (
-                <p className="text-gray-400">Run simulation to generate energy curve</p>
-              )}
-            </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );
