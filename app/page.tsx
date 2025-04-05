@@ -3,16 +3,20 @@
 import { useRouter } from 'next/navigation';
 export default function HomePage() {
   const router = useRouter();
-  
-  const redirect = () => {
+
+  const redirect1 = () => {
     router.push('/simulation');
+  };
+
+  const redirect2 = () => {
+    router.push('/curated-list');
   };
 
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
       {/* Radial gradient background */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-800 via-gray-900 to-black"></div>
-      
+
       <main className="relative z-10 flex flex-col items-center justify-center min-h-screen p-8 text-center">
         {/* Animated header section */}
         <div className="mb-8">
@@ -38,19 +42,19 @@ export default function HomePage() {
             <div className="p-6 border border-cyan-400/20 rounded-lg bg-zinc-800/50 backdrop-blur-sm">
               <h3 className="text-yellow-500 text-lg font-mono mb-4">Molecular Interface</h3>
               <p className="text-gray-300 mb-4">
-                How No A Molecule are<br/>
-                Read & intime disk
+                Not all molecules are compatible. <br/>
+                Select from a curated list .
               </p>
               {/* on click redirect to /simulation */}
-                <button onClick={redirect} className="px-4 py-2 bg-yellow-600  text-white rounded-md font-medium transition-colors hover">
+              <button onClick={redirect1} className="px-4 py-2 bg-yellow-600  text-white rounded-md font-medium transition-colors hover">
                 Click here
-                </button>
+              </button>
             </div>
 
             <div className="p-6 border border-cyan-400/20 rounded-lg bg-zinc-800/50 backdrop-blur-sm">
               <h3 className="text-orange-400 text-lg font-mono mb-4">Simulation Core</h3>
               <div className="space-y-4">
-                <button className="w-full px-4 py-2 bg-orange-500  rounded-md font-medium transition-colors">
+                <button onClick={redirect2} className="w-full px-4 py-2 bg-orange-500  rounded-md font-medium transition-colors">
                   Start Simulating
                 </button>
                 <button className="w-full px-4 py-2 border border-orange-400 hover:border-red-400/80 rounded-md font-medium transition-colors">
