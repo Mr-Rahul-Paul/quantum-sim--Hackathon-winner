@@ -1,7 +1,9 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
+// import Image from 'next/image'
+// import { motion } from 'framer-motion';
+
 
 export default function ProjectOverview() {
   return (
@@ -27,7 +29,7 @@ export default function ProjectOverview() {
               </div>
               <p className="text-foreground/70 mb-4">
                 We designed our platform to spark curiosity and guide users toward discovering new resources, 
-                opportunities, and connections they wouldn't have found otherwise, creating serendipitous 
+                opportunities, and connections they wouldnt have found otherwise, creating serendipitous 
                 moments of discovery throughout the college experience.
               </p>
             </div>
@@ -38,7 +40,7 @@ export default function ProjectOverview() {
               <p className="text-foreground/70 mb-4">
                 Our solution bridges the gap between academic learning and real-world application, providing tools 
                 for both personal growth and professional development in a unified, accessible platform tailored 
-                specifically to college students' unique needs.
+                specifically to college students unique needs.
               </p>
             </div>
           </div>
@@ -54,7 +56,7 @@ export default function ProjectOverview() {
           </p>
           <p className="text-foreground/70 mb-4">
             The platform combines personalized recommendations with community-sourced hidden gems, creating a 
-            dynamic ecosystem of discovery that evolves with each student's journey through college.
+            dynamic ecosystem of discovery that evolves with each students journey through college.
           </p>
         </div>
 
@@ -62,7 +64,7 @@ export default function ProjectOverview() {
         <div className="rounded-lg p-6 mb-8 transition-all duration-300 bg-background hover:bg-gradient-to-br hover:from-orange-500/5 hover:to-red-500/10 text-foreground border border-orange-500/30 shadow-sm">
           <h2 className="text-2xl font-semibold mb-4">How We Got Started</h2>
           <p className="text-foreground/70 mb-4">
-            The idea was born from our team's shared frustration with the disconnect between college education 
+            The idea was born from our teams shared frustration with the disconnect between college education 
             and real-world preparation. We noticed that many valuable resources existed but were scattered across 
             different departments, websites, and word-of-mouth networks.
           </p>
@@ -81,7 +83,7 @@ export default function ProjectOverview() {
               <h3 className="text-xl font-medium mb-2 text-orange-500">Personalized Discovery</h3>
               <p className="text-foreground/70">
                 AI-powered recommendations that adapt to your interests, goals, and past engagement, 
-                helping you discover opportunities you'll actually care about.
+                helping you discover opportunities youll actually care about.
               </p>
             </div>
             <div className="p-4 rounded-lg bg-background border border-orange-500/20">
@@ -129,7 +131,7 @@ export default function ProjectOverview() {
               </p>
               <p className="text-foreground/70">
                 Designed and implemented the data models, API endpoints, and recommendation algorithms
-                that power the platform's core discovery capabilities.
+                that power the platforms core discovery capabilities.
               </p>
             </div>
             <div className="p-4 rounded-lg bg-background border border-orange-500/20">
@@ -165,10 +167,17 @@ export default function ProjectOverview() {
 
         {/* Navigation back to home */}
         <div className="mt-12 pt-6 border-t border-foreground/20">
-          <Link href="/" className="text-foreground/60 hover:text-foreground transition-colors">
-            &larr; Back to Home
-          </Link>
+            <div className="flex justify-between w-full">
+            <Link href="/" className="text-foreground/60 hover:text-foreground transition-colors">
+              &larr; Back to Home
+            </Link>
+            <Link href="/curated-list" className="text-foreground/60 hover:text-foreground transition-colors">
+             To Interface &rarr;
+            </Link>
+            </div>
         </div>
+
+     
       </div>
     </main>
   )

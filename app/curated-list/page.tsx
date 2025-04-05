@@ -96,20 +96,20 @@ export default function CuratedListPage() {
                     {item.description}
                   </p>
                 </div>
-                
-                {item.imageUrl && (
-                  <div className="w-24 h-24 rounded-lg overflow-hidden flex items-center justify-center shadow-sm border border-orange-500/20">
-                    <div className="w-full h-full flex items-center justify-center">
-                      <Image 
-                        src={item.imageUrl} 
-                        alt={item.name} 
-                        width={96} 
-                        height={96} 
-                        className="object-cover w-full h-full"
-                      />
-                    </div>
-                  </div>
-                )}
+                i
+          {item.imageUrl && (
+            <div className="w-24 h-24 rounded-lg overflow-hidden flex items-center justify-center shadow-sm border border-orange-500/20">
+              <div className="w-full h-full flex items-center justify-center">
+                <Image 
+                  src={item.imageUrl || ''} 
+                  alt={item.name} 
+                  width={96} 
+                  height={96} 
+                  className="object-cover w-full h-full"
+                />
+              </div>
+            </div>
+          )}
               </div>
               
               <div className="mt-4 pt-4 border-t border-orange-500/20 flex justify-end">
@@ -131,10 +131,20 @@ export default function CuratedListPage() {
         )}
         
         <div className="mt-12 pt-6 border-t border-foreground/20">
-          <Link href="/" className="text-foreground/60 hover:text-foreground transition-colors">
-            &larr; Back to Home
-          </Link>
+            <div className="flex justify-between w-full">
+            <Link href="/curated-list" className="text-foreground/60 hover:text-foreground transition-colors">
+            &larr; To Overview
+            </Link>
+            <Link href="/simulation" className="text-foreground/60 hover:text-foreground transition-colors">
+            To Simulation  &rarr;
+            </Link>
+            </div>
         </div>
+      
+      <div className="text-gray-400 text-sm mt-8 justify-center text-center" >
+         • HackIIIT • Team - Bytes  • <a className='underline hover:no-underline hover:font-bold' href='https://github.com/Qiskit/textbook/blob/main/notebooks/ch-applications/vqe-molecules.ipynb'>Click here to read reaseach paper 📃</a>
+      </div>
+
       </div>
     </main>
   )
