@@ -10,7 +10,7 @@ import {
   PointElement,
   Tooltip,
   Legend,
-  TooltipItem,
+  // TooltipItem,
 } from "chart.js";
 
 // Register ChartJS components
@@ -69,6 +69,7 @@ export default function Home() {
       }
     } catch (err) {
       // setError("Failed to connect to the simulation server");
+       console.log("err" ,err)
     } finally {
       setLoading(false);
     }
@@ -161,10 +162,10 @@ export default function Home() {
 
   return (
     <div className="flex flex-col items-center min-h-screen bg-black text-white relative overflow-hidden">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4 ">
-            Quantum chemistry Simulator 
-          </h1>
-        
+      <h1 className="text-4xl md:text-6xl font-bold mb-4 ">
+        Quantum chemistry Simulator
+      </h1>
+
       <div className="w-full max-w-4xl space-y-6">
         {/* Input Form */}
         <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
