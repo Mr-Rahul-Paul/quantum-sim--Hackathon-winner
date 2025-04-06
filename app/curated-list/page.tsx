@@ -16,24 +16,63 @@ interface CuratedItem {
 const placeholderItems: CuratedItem[] = [
   {
     id: '1',
-    name: 'Example Element',
-    category: 'Molecule',
-    description: 'This is a placeholder for a curated element or molecule.',
-    imageUrl: '/placeholder.png'
+    name: 'Hydrogen',
+    category: 'Element',
+    description: 'Lightest element, colorless gas that forms water with oxygen.',
+    imageUrl: 'data:image/png;base64,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'
   },
   {
     id: '2',
-    name: 'Another Element',
+    name: 'Lithium',
     category: 'Element',
-    description: 'Another placeholder for your curated list.',
+    description: 'Soft, silvery metal used in batteries.',
+    imageUrl: 'data:image/png;base64,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'
+  },
+
+  {
+    id: '3',
+    name: 'Oxygen',
+    category: 'Element',
+    description: 'Essential for respiration, supports combustion.',
+    imageUrl: 'data:image/png;base64,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'},
+  {
+    id: '4',
+    name: 'Beryllium',
+    category: 'Element',
+    description: 'Lightweight metal used in aerospace.',
+    imageUrl: 'data:image/png;base64,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'
+  },
+  {
+    id: '6',
+    name: 'Carbon',
+    category: 'Element',
+    description: 'Basis of organic life, found in all living things.',
+    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbOA79bCf9HemNVnMxViAYh5_q6xwXTowJsQ&s'
+  },
+  {
+    id: '7',
+    name: 'Di-Hydrogen (H2)',
+    category: 'Molecule',
+    description: 'Molecular hydrogen, used as a fuel.',
     imageUrl: '/placeholder.png'
   },
   {
-    id: '3',
-    name: 'hyrogen  molecule',
-    category: 'Element',
-    description: 'It jjust works my guys.',
-    imageUrl: 'data:image/jpeg;base64,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'},
+    id: '8',
+    name: 'Lithium Hydride (LiH)',
+    category: 'Molecule',
+    description: 'Used in hydrogen storage and batteries.',
+    imageUrl: '/placeholder.png'
+  },
+
+  {
+    id: '9',
+    name: 'Water (H2O)',
+    category: 'Molecule',
+    description: 'Essential for life, covers most of Earth.',
+    imageUrl: '/placeholder.png'
+  },
+
+
 ]
 
 export default function CuratedListPage() {
@@ -42,32 +81,32 @@ export default function CuratedListPage() {
   const [activeCategory, setActiveCategory] = useState<string | null>(null)
 
   const categories = Array.from(new Set(items.map(item => item.category)))
-  
-  const filteredItems = activeCategory 
+
+  const filteredItems = activeCategory
     ? items.filter(item => item.category === activeCategory)
     : items
 
   return (
     <main className="flex min-h-screen flex-col items-center p-6 md:p-24">
-    <div className="z-10 max-w-5xl w-full">
-      <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-amber-500 to-red-500 bg-clip-text text-transparent">
-        Curated Elements & Molecules
-      </h1>
-      <p className="text-2xl md:text-lg mb-10 max-w-3xl text-foreground/80 border-l-4 border-orange-500/50 pl-4">
-        A collection of carefully selected elements and molecules for your reference.
-        You can add your curated list details here.
-      </p>
+      <div className="z-10 max-w-5xl w-full">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-amber-500 to-red-500 bg-clip-text text-transparent">
+          Curated Elements & Molecules
+        </h1>
+        <p className="text-2xl md:text-lg mb-10 max-w-3xl text-foreground/80 border-l-4 border-orange-500/50 pl-4">
+          A collection of carefully selected elements and molecules for your reference.
+          You can add your curated list details here.
+        </p>
 
         {/* Category filter */}
         <div className="flex flex-wrap gap-3 mb-8">
-          <button 
+          <button
             className={`px-4 py-2 rounded-full ${activeCategory === null ? 'bg-orange-500 text-background ' : 'bg-background text-foreground border border-orange-500/50'}`}
             onClick={() => setActiveCategory(null)}
           >
             All
           </button>
           {categories.map(category => (
-            <button 
+            <button
               key={category}
               className={`px-4 py-2 rounded-full ${activeCategory === category ? 'bg-orange-500 text-background ' : 'bg-background  hover:bg-red-500/20 text-foreground border border-orange-500/50 transition-colors'}`}
               onClick={() => setActiveCategory(category)}
@@ -76,12 +115,12 @@ export default function CuratedListPage() {
             </button>
           ))}
         </div>
-        
-              {/* Grid layout for items */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        {/* Grid layout for items */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {filteredItems.map(item => (
-            <div 
-              key={item.id} 
+            <div
+              key={item.id}
               className="rounded-lg p-6 transition-all duration-300 bg-background hover:bg-gradient-to-br hover:from-orange-500/5 hover:to-red-500/10 text-foreground border border-orange-500/30 shadow-sm hover:shadow-md hover:scale-[1.05]"
             >
               <div className="flex items-start justify-between">
@@ -92,29 +131,44 @@ export default function CuratedListPage() {
                   <h2 className="text-2xl font-semibold mb-2 group-hover:text-orange-500">
                     {item.name}
                   </h2>
-                  <p className="text-foreground/70 mb-4">
-                    {item.description}
-                  </p>
+
                 </div>
-                i
-          {item.imageUrl && (
-            <div className="w-24 h-24 rounded-lg overflow-hidden flex items-center justify-center shadow-sm border border-orange-500/20">
-              <div className="w-full h-full flex items-center justify-center">
-                <Image 
-                  src={item.imageUrl || ''} 
-                  alt={item.name} 
-                  width={96} 
-                  height={96} 
-                  className="object-cover w-full h-full"
-                />
+
+                {item.imageUrl && (
+                  <div className="w-24 h-24 rounded-lg overflow-hidden flex items-center justify-center shadow-sm border border-orange-500/20">
+                    <div className="w-full h-full flex items-center justify-center">
+                      <Image
+                        src={item.imageUrl || ''}
+                        alt={item.name}
+                        width={96}
+                        height={96}
+                        className="object-cover w-full h-full"
+                      />
+                    </div>
+                  </div>
+                )}
               </div>
-            </div>
-          )}
-              </div>
-              
+
               <div className="mt-4 pt-4 border-t border-orange-500/20 flex justify-end">
-                <button className="px-4 py-2 text-sm rounded-lg  text-grey-300 font-bold underline hover:opacity-90 ">
-                  <a href="/ ">View Details</ a>
+                <p className="text-foreground/70 mb-4">
+                  {item.description}
+                </p>
+                {/* filepath: c:\Users\rpaul\OneDrive\Desktop\hackathon\intro-test\app\curated-list\page.tsx */}
+                <button className="px-4 py-2 text-sm rounded-lg text-grey-300 font-bold underline hover:opacity-90">
+                  <Link
+                    href={{
+                      pathname: '/details',
+                      query: {
+                        id: item.id,
+                        name: item.name,
+                        category: item.category,
+                        description: item.description,
+                        imageUrl: item.imageUrl,
+                      },
+                    }}
+                  >
+                    More Details
+                  </Link>
                 </button>
               </div>
             </div>
@@ -129,21 +183,21 @@ export default function CuratedListPage() {
             </p>
           </div>
         )}
-        
+
         <div className="mt-12 pt-6 border-t border-foreground/20">
-            <div className="flex justify-between w-full">
+          <div className="flex justify-between w-full">
             <Link href="/curated-list" className="text-foreground/60 hover:text-foreground transition-colors">
-            &larr; To Overview
+              &larr; To Overview
             </Link>
             <Link href="/simulation" className="text-foreground/60 hover:text-foreground transition-colors">
-            To Simulation  &rarr;
+              To Simulation  &rarr;
             </Link>
-            </div>
+          </div>
         </div>
-      
-      <div className="text-gray-400 text-sm mt-8 justify-center text-center" >
-         • HackIIIT • Team - Bytes  • <a className='underline hover:no-underline hover:font-bold' href='https://github.com/Qiskit/textbook/blob/main/notebooks/ch-applications/vqe-molecules.ipynb'>Click here to read reaseach paper 📃</a>
-      </div>
+
+        <div className="text-gray-400 text-sm mt-8 justify-center text-center" >
+          • HackIIIT • Team - Bytes  • <a className='underline hover:no-underline hover:font-bold' href='https://github.com/Qiskit/textbook/blob/main/notebooks/ch-applications/vqe-molecules.ipynb'>Click here to read reaseach paper 📃</a>
+        </div>
 
       </div>
     </main>

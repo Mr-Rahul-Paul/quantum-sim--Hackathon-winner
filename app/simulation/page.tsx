@@ -3,6 +3,7 @@
 import { useState } from "react";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import Link from 'next/link';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
 // Define proper types for the data
 interface Atom {
@@ -93,7 +94,8 @@ export default function Home() {
     setError(null);
     setResults(null);
     try {
-      const res = await fetch("http://localhost:8000/simulate/", {
+      // To this
+      const res = await fetch(`${API_URL}/simulate/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ atoms, charge, spin }),
@@ -104,7 +106,7 @@ export default function Home() {
       } else {
         setResults(data);
       }
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (err) {
       setError("Server connection failed");
     } finally {
@@ -117,9 +119,10 @@ export default function Home() {
     setPredLoading(true);
     setPredError(null);
     setPrediction(null);
-    
+
     try {
-      const res = await fetch("http://localhost:8000/predict/", {
+      // To this
+      const res = await fetch(`${API_URL}/predict/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -130,7 +133,7 @@ export default function Home() {
           molecular_complexity: parseFloat(predictionInput.molecular_complexity)
         }),
       });
-      
+
       const data = await res.json();
       if (data.error) {
         setPredError(data.error);
@@ -138,7 +141,7 @@ export default function Home() {
         setPrediction(data);
       }
     } catch (err) {
-      setPredError("Server connection failed" ) ;
+      setPredError("Server connection failed");
       console.error(err);
     } finally {
       setPredLoading(false);
@@ -271,11 +274,10 @@ export default function Home() {
           <button
             onClick={handleSimulate}
             disabled={loading}
-            className={`w-full py-3 px-4 rounded-xl font-medium transition ${
-              loading
-                ? "bg-orange-400 cursor-not-allowed"
-                : "bg-orange-600 hover:bg-orange-500 shadow-lg"
-            } flex items-center justify-center`}
+            className={`w-full py-3 px-4 rounded-xl font-medium transition ${loading
+              ? "bg-orange-400 cursor-not-allowed"
+              : "bg-orange-600 hover:bg-orange-500 shadow-lg"
+              } flex items-center justify-center`}
           >
             {loading ? (
               <>
@@ -318,7 +320,7 @@ export default function Home() {
                 <h2 className="text-2xl font-semibold mb-4 text-orange-500 flex items-center">
                   <span className="mr-2">📊</span> Simulation Results
                 </h2>
-                
+
                 <div className="space-y-4">
                   <div className="flex justify-between py-2 border-b border-foreground/20">
                     <span className="text-foreground/70">Molecule:</span>
@@ -332,7 +334,7 @@ export default function Home() {
                     <span className="text-foreground/70">Method Used:</span>
                     <span className="font-mono text-orange-500">{results.ansatz_type}</span>
                   </div>
-                  
+
                   <div className="pt-4 space-y-3">
                     <div className="flex justify-between">
                       <span className="text-foreground/70">Exact Energy:</span>
@@ -364,7 +366,7 @@ export default function Home() {
                 </h2>
                 {results.molecule_image ? (
                   <div className="flex flex-col items-center">
-                    <img 
+                    <img
                       src={`data:image/png;base64,${results.molecule_image}`}
                       alt={results.molecule_name || "Molecule structure"}
                       className="max-w-full h-64 object-contain border border-orange-500/20 rounded-lg bg-background"
@@ -388,7 +390,7 @@ export default function Home() {
               </h2>
               {results.energy_plot ? (
                 <div className="flex flex-col items-center">
-                  <img 
+                  <img
                     src={`data:image/png;base64,${results.energy_plot}`}
                     alt="Energy vs Bond Distance"
                     className="w-full h-96 object-contain border border-orange-500/20 rounded-lg bg-background p-4"
@@ -414,7 +416,7 @@ export default function Home() {
           <p className="mb-4 text-foreground/80">
             Predict whether this molecule should be simulated classically or quantumly
           </p>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             <div className="space-y-2">
               <label className="block text-sm font-medium text-foreground/70">
@@ -427,7 +429,7 @@ export default function Home() {
                 onChange={(e) => handlePredictionInputChange("num_atoms", e.target.value)}
               />
             </div>
-            
+
             <div className="space-y-2">
               <label className="block text-sm font-medium text-foreground/70">
                 Number of Electrons
@@ -439,7 +441,7 @@ export default function Home() {
                 onChange={(e) => handlePredictionInputChange("num_electrons", e.target.value)}
               />
             </div>
-            
+
             <div className="space-y-2">
               <label className="block text-sm font-medium text-foreground/70">
                 Qubits Required
@@ -451,7 +453,7 @@ export default function Home() {
                 onChange={(e) => handlePredictionInputChange("num_qubits", e.target.value)}
               />
             </div>
-            
+
             <div className="space-y-2">
               <label className="block text-sm font-medium text-foreground/70">
                 Basis Set Size
@@ -463,7 +465,7 @@ export default function Home() {
                 onChange={(e) => handlePredictionInputChange("basis_set_size", e.target.value)}
               />
             </div>
-            
+
             <div className="space-y-2">
               <label className="block text-sm font-medium text-foreground/70">
                 Molecular Complexity (1-10)
@@ -479,15 +481,14 @@ export default function Home() {
               />
             </div>
           </div>
-          
+
           <button
             onClick={handlePredict}
             disabled={predLoading}
-            className={`w-full py-3 px-4 rounded-xl font-medium transition ${
-              predLoading
-                ? "bg-orange-400 cursor-not-allowed"
-                : "bg-orange-600 hover:bg-orange-500 shadow-lg"
-            } flex items-center justify-center`}
+            className={`w-full py-3 px-4 rounded-xl font-medium transition ${predLoading
+              ? "bg-orange-400 cursor-not-allowed"
+              : "bg-orange-600 hover:bg-orange-500 shadow-lg"
+              } flex items-center justify-center`}
           >
             {predLoading ? (
               <>
@@ -501,7 +502,7 @@ export default function Home() {
               </>
             )}
           </button>
-          
+
           {predError && (
             <div className="rounded-lg p-6 mt-4 transition-all duration-300 bg-rose-950/20 text-foreground border border-rose-500/30 shadow-sm">
               <h3 className="text-xl font-semibold mb-2 text-rose-500 flex items-center">
@@ -510,15 +511,14 @@ export default function Home() {
               <p className="text-foreground/80">{predError}</p>
             </div>
           )}
-          
+
           {prediction && (
             <div className="mt-4 rounded-lg p-4 transition-all duration-300 bg-background text-foreground border border-orange-500/30 shadow-sm">
               <h3 className="font-bold text-orange-500 mb-2">Prediction Result</h3>
-              <div className={`p-3 rounded-lg ${
-                prediction.prediction === "Quantum" 
-                  ? "bg-purple-900/20 border border-purple-500/30"
-                  : "bg-green-900/20 border border-green-500/30"
-              }`}>
+              <div className={`p-3 rounded-lg ${prediction.prediction === "Quantum"
+                ? "bg-purple-900/20 border border-purple-500/30"
+                : "bg-green-900/20 border border-green-500/30"
+                }`}>
                 <div className="flex justify-between items-center">
                   <span className="text-lg font-medium text-foreground">
                     {prediction.prediction === "Quantum" ? "Quantum Recommended" : "Classical Recommended"}
@@ -537,7 +537,7 @@ export default function Home() {
                   </p>
                 )}
               </div>
-              
+
               <div className="mt-4">
                 <h4 className="text-sm font-medium text-foreground/70 mb-2">Input Features:</h4>
                 <div className="grid grid-cols-2 gap-2 text-sm">
