@@ -2,6 +2,10 @@
 
 This project is a **Quantum Molecule Simulator** built using [Next.js](https://nextjs.org) and [Qiskit](https://qiskit.org). It combines quantum computing and machine learning to simulate molecular properties and predict behaviors, providing an innovative platform for researchers and students.
 
+## Demo Video
+
+[Download Demo Video](./assets/winning-team-video.mov)
+
 ## Project Overview
 
 Our platform enables users to:
