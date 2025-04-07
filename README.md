@@ -42,20 +42,7 @@ This project was developed during a hackathon by **Team Bytes**.
    npm install
    ```
 
-3. Set up the backend:
-   - Navigate to the `backend` folder:
-     ```bash
-     cd backend
-     ```
-   - Create a `.env` file and add the following:
-     ```
-     MONGODB_ATLAS_URI=<your-mongodb-uri>
-     IBMQ_API_TOKEN=<your-ibm-quantum-api-token>
-     ```
-   - Install Python dependencies:
-     ```bash
-     pip install -r requirements.txt
-     ```
+3. Set up the backend
 
 4. Start the backend server:
    ```bash
