@@ -84,12 +84,8 @@ This project was developed during a hackathon by **Team Bytes**.
 
 ## Learn More
 
-- [Qiskit Documentation](https://qiskit.org/documentation/) - Learn about quantum computing with Qiskit.
-- [Next.js Documentation](https://nextjs.org/docs) - Learn about building web applications with Next.js.
-
-## Deploy on Vercel
-
-The easiest way to deploy this project is to use the [Vercel Platform](https://vercel.com). Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [Qiskit Documentation](https://qiskit.org/documentation/)
+- [Next.js Documentation](https://nextjs.org/docs) 
 
 ## License
 
