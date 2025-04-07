@@ -42,19 +42,17 @@ This project was developed during a hackathon by **Team Bytes**.
    npm install
    ```
 
-3. Set up the backend
-
-4. Start the backend server:
+3. Start the backend server:
    ```bash
    python main.py
    ```
 
-5. Start the frontend:
+4. Start the frontend:
    ```bash
    npm run dev
    ```
 
-6. Open [http://localhost:3000](http://localhost:3000) in your browser.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Usage
 
