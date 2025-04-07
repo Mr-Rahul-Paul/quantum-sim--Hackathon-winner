@@ -5,23 +5,24 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 interface ItemDetails {
-  id: string;
-  name: string;
-  category: string;
-  description: string;
-  imageUrl: string;
-}
+    id: string;
+    name: string;
+    category: string;
+    description: string;
+    imageUrl: string;
+    applications?: string[]; // Add this to store the applications
+  }
 
 export default function DetailsPage() {
   const searchParams = useSearchParams();
   
-  // State for item details
   const [details, setDetails] = useState<ItemDetails>({
     id: '',
     name: '',
     category: '',
     description: '',
     imageUrl: '/placeholder.png',
+    applications: [], // Initialize empty array for applications
   });
   
   const [loading, setLoading] = useState(true);
@@ -34,7 +35,17 @@ export default function DetailsPage() {
     const name = searchParams.get('name') || '';
     const category = searchParams.get('category') || '';
     const description = searchParams.get('description') || '';
-    const imageUrl = searchParams.get('imageUrl')|| '';
+    const imageUrl = searchParams.get('imageUrl') || '';
+    
+    // Get application parameters
+    const applications: string[] = [];
+    const application1 = searchParams.get('application1');
+    const application2 = searchParams.get('application2');
+    const application3 = searchParams.get('application3');
+    
+    if (application1) applications.push(application1);
+    if (application2) applications.push(application2);
+    if (application3) applications.push(application3);
     
     // Update details with query parameters
     setDetails({
@@ -43,6 +54,7 @@ export default function DetailsPage() {
       category,
       description,
       imageUrl,
+      applications,
     });
     
     setLoading(false);

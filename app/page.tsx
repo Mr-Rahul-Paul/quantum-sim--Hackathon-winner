@@ -37,7 +37,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white relative overflow-hidden">
+    <div className="min-h-screen bg-black text-white  relative overflow-hidden">
       {/* Radial gradient background */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-800 via-gray-900 to-black"></div>
 
@@ -59,7 +59,7 @@ export default function HomePage() {
           variants={staggerContainer}
           initial="hidden"
           animate="visible"
-          className="max-w-4xl space-y-8"
+          className="max-w-4xl space-y-8 animate"
         >
           <motion.div variants={fadeIn} className="space-y-4">
             <h2 className="text-2xl md:text-3xl font-semibold bg-gradient-to-r from-yellow-400 to-red-500 bg-clip-text text-transparent">
@@ -129,11 +129,12 @@ export default function HomePage() {
                   Start Simulating
                 </motion.button>
                 <motion.button
+                onClick={() => alert("9873789881")}
                   className="w-full px-4 py-2 border border-orange-400 rounded-md font-medium transition-colors"
                   whileHover={{ borderColor: "#f87171", scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  Compare us!
+                  Contact us!
                 </motion.button>
               </div>
             </motion.div>
