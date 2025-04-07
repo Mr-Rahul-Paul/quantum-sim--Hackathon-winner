@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Quantum Molecule Simulator
+
+This project is a **Quantum Molecule Simulator** built using [Next.js](https://nextjs.org) and [Qiskit](https://qiskit.org). It combines quantum computing and machine learning to simulate molecular properties and predict behaviors, providing an innovative platform for researchers and students.
+
+## Project Overview
+
+Our platform enables users to:
+- Simulate molecular energy curves using quantum algorithms like VQE (Variational Quantum Eigensolver).
+- Predict molecular behavior using a trained machine learning model.
+- Visualize molecular structures and energy plots.
+- Explore curated lists of elements and molecules with detailed insights.
+
+This project was developed during a hackathon by **Team Bytes**.
+
+## Features
+
+- **Quantum Simulations**: Leverage IBM Quantum services or local simulators to compute molecular properties.
+- **Machine Learning Predictions**: Predict molecular behavior based on complexity, qubits, and other features.
+- **Interactive UI**: A user-friendly interface to explore curated molecules and run simulations.
+- **Caching**: Efficient caching of results to reduce redundant computations.
+- **Visualization**: Generate molecular images and energy plots for better understanding.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js (v16 or later)
+- Python (v3.9 or later)
+- MongoDB (for caching simulation results)
+- IBM Quantum API Token (optional for quantum hardware simulations)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-repo/quantum-molecule-simulator.git
+   cd quantum-molecule-simulator
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Set up the backend:
+   - Navigate to the `backend` folder:
+     ```bash
+     cd backend
+     ```
+   - Create a `.env` file and add the following:
+     ```
+     MONGODB_ATLAS_URI=<your-mongodb-uri>
+     IBMQ_API_TOKEN=<your-ibm-quantum-api-token>
+     ```
+   - Install Python dependencies:
+     ```bash
+     pip install -r requirements.txt
+     ```
+
+4. Start the backend server:
+   ```bash
+   python main.py
+   ```
+
+5. Start the frontend:
+   ```bash
+   npm run dev
+   ```
+
+6. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Usage
+
+- **Curated List**: Browse a collection of elements and molecules with detailed descriptions.
+- **Simulations**: Navigate to the simulation page to run quantum simulations or make predictions.
+- **Details Page**: View detailed information about a specific molecule or element.
+
+## Team
+
+- **Frontend Development**: Designed and implemented the UI using React and TailwindCSS.
+- **Backend Development**: Built the API for simulations and predictions using FastAPI and Qiskit.
+- **Machine Learning**: Developed the ML model for molecular behavior predictions.
+- **Visualization**: Created molecular images and energy plots for better insights.
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- [Qiskit Documentation](https://qiskit.org/documentation/) - Learn about quantum computing with Qiskit.
+- [Next.js Documentation](https://nextjs.org/docs) - Learn about building web applications with Next.js.
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The easiest way to deploy this project is to use the [Vercel Platform](https://vercel.com). Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+
+This project is licensed under the MIT License.
