@@ -6,6 +6,8 @@ This project is a **Quantum Molecule Simulator** built using [Next.js](https://n
 
 [![Quantum Molecule Simulator Demo](./assets/video-thumbnail.png)](./assets/winning-team-video.mov)
 
+(Download and view)
+
 ## Project Overview
 
 Our platform enables users to:
