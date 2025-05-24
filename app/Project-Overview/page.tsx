@@ -10,7 +10,7 @@ export default function ProjectOverview() {
     <main className="flex min-h-screen flex-col items-center p-6 md:p-24">
       <div className="z-10 max-w-5xl w-full">
         {/* Header section */}
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-red-500 leading-tight">
+        <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-red-500 leading-tight">
           Project Overview 📜
         </h1>
 
@@ -24,7 +24,7 @@ export default function ProjectOverview() {
           <div className="flex flex-col md:flex-row gap-6">
             <div>
                 <div className="p-4 rounded-lg mb-4 bg-gradient-to-r from-rose-500/15 to-orange-400/15 shadow-sm">
-                <p className="font-bold">Make a product that encourages exploration and discovery under the topic ' Open Innovation ' .</p>
+                <p className="font-bold">Make a product that encourages exploration and discovery under the topic &#39; Open Innovation &#39; .</p>
                 </div>
               <p className="text-foreground/70 mb-4">
                 We designed our platform to spark curiosity and guide users toward discovering new resources,

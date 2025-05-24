@@ -75,7 +75,7 @@ export default function HomePage() {
           <div className="grid md:grid-cols-3 gap-6 text-left">
             <motion.div
               variants={fadeIn}
-              className="p-6 border border-cyan-400/20 rounded-2xl bg-zinc-800/50 backdrop-blur-sm"
+              className="p-6 border border-cyan-400/20 rounded-lg bg-zinc-800/50 backdrop-blur-sm"
               whileHover={{ scale: 1.01, transition: { duration: 0.2 } }}
             >
               <h3 className="text-yellow-500 text-lg font-mono mb-4">Project Overview</h3>
@@ -85,7 +85,7 @@ export default function HomePage() {
                 </p>
               <motion.button
                 onClick={redirect3}
-                className="px-4 py-2 bg-yellow-600 text-white rounded-xl font-medium transition-colors"
+                className="px-4 py-2 bg-yellow-600 text-white rounded-md font-medium transition-colors"
                 whileHover={{ backgroundColor: "#b45309", scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -95,7 +95,7 @@ export default function HomePage() {
             {/* ------------------------------------------------------- */}
             <motion.div
               variants={fadeIn}
-              className="p-6 border border-cyan-400/20 rounded-2xl bg-zinc-800/50 backdrop-blur-sm"
+              className="p-6 border border-cyan-400/20 rounded-lg bg-zinc-800/50 backdrop-blur-sm"
               whileHover={{ scale: 1.01, transition: { duration: 0.2 } }}
             >
               <h3 className="text-yellow-600 text-lg font-mono mb-4">Molecular Interface</h3>
@@ -105,7 +105,7 @@ export default function HomePage() {
               </p>
               <motion.button
                 onClick={redirect1}
-                className="px-4 py-2 bg-orange-500 text-white rounded-xl font-medium transition-colors"
+                className="px-4 py-2 bg-orange-500 text-white rounded-md font-medium transition-colors"
                 whileHover={{ backgroundColor: "#b45309", scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -115,7 +115,7 @@ export default function HomePage() {
             {/* ---------------------------------------------------------- */}
             <motion.div
               variants={fadeIn}
-              className="p-6 border border-cyan-400/20 rounded-2xl bg-zinc-800/50 backdrop-blur-sm"
+              className="p-6 border border-cyan-400/20 rounded-lg bg-zinc-800/50 backdrop-blur-sm"
               whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
             >
               <h3 className="text-orange-500 text-lg font-mono mb-4">Simulation Core</h3>

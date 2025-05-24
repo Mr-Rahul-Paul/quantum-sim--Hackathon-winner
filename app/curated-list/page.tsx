@@ -191,7 +191,7 @@ export default function CuratedListPage() {
 
         <div className="mt-12 pt-6 border-t border-foreground/20">
           <div className="flex justify-between w-full">
-            <Link href="/curated-list" className="text-foreground/60 hover:text-foreground transition-colors">
+            <Link href="/Project-Overview" className="text-foreground/60 hover:text-foreground transition-colors">
               &larr; To Overview
             </Link>
             <Link href="/simulation" className="text-foreground/60 hover:text-foreground transition-colors">
