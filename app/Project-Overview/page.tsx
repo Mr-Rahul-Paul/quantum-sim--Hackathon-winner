@@ -11,22 +11,21 @@ export default function ProjectOverview() {
       <div className="z-10 max-w-5xl w-full">
         {/* Header section */}
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-red-500 leading-tight">
-          Project Overview
+          Project Overview 📜
         </h1>
 
-        <p className="text-2xl md:text-lg mb-10 max-w-3xl text-foreground/80 border-l-4 border-orange-500/50 pl-4">
-          Our innovative solution for college students to discover resources, opportunities, and connections
-          that enhance both personal growth and professional development.
+        <p className="text-2xl md:text-lg mb-10 max-w-3xl text-foreground/80 border-l-8 border-orange-500/50 pl-4">
+          This project, developed as part of an Open Innovation initiative, provides a platform for calculating the ground state energy of elements using computational methods provided by IBM and their Quantum computers. 
         </p>
 
         {/* Problem Statement Section */}
-        <div className="rounded-lg p-6 mb-8 transition-all duration-300 bg-background hover:bg-gradient-to-br hover:from-orange-500/5 hover:to-red-500/10 text-foreground border border-orange-500/30 shadow-sm">
-          <h2 className="text-2xl font-semibold mb-3 group-hover:text-orange-500">Problem Statement</h2>
+        <div className="rounded-lg p-6 mb-8 transition-all duration-300 bg-background hover:bg-gradient-to-br hover:from-red-700/10 hover:to-gray-700/10 text-foreground border border-orange-500/30 shadow-sm">
+          <h2 className="text-2xl font-semibold mb-3 group-hover:text-orange-500 ">Problem Statement</h2>
           <div className="flex flex-col md:flex-row gap-6">
-            <div className="flex-1">
-              <div className="p-4 rounded-lg bg-amber-900/50 mb-4">
-                <p className="font-medium">Make a product that encourages exploration and discovery.</p>
-              </div>
+            <div>
+                <div className="p-4 rounded-lg mb-4 bg-gradient-to-r from-rose-500/15 to-orange-400/15 shadow-sm">
+                <p className="font-bold">Make a product that encourages exploration and discovery under the topic ' Open Innovation ' .</p>
+                </div>
               <p className="text-foreground/70 mb-4">
                 We designed our platform to spark curiosity and guide users toward discovering new resources,
                 opportunities, and connections they wouldnt have found otherwise, creating serendipitous
@@ -37,10 +36,10 @@ export default function ProjectOverview() {
           </div>
         </div>
         {/* Team Members Section */}
-        <div className="rounded-lg p-6 mb-8 transition-all duration-300 bg-background hover:bg-gradient-to-br hover:from-orange-500/5 hover:to-red-500/10 text-foreground border border-orange-500/30 shadow-sm">
-          <h2 className="text-2xl font-semibold mb-4">Our Team</h2>
+        <div className="rounded-lg p-6 mb-8 transition-all duration-300 bg-background hover:bg-gradient-to-br hover:from-red-700/10 hover:to-zinc-700/10 text-foreground border border-orange-500/30 shadow-sm">
+          <h2 className="text-2xl font-bold mb-4">Our Team</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-4 rounded-lg bg-background border border-orange-500/20">
+            <div className="p-4 rounded-xl bg-background border border-orange-500/20">
               <h3 className="text-xl font-medium mb-2 text-orange-500">Rahul</h3>
               <p className="text-foreground/70 mb-2">
                 <span className="font-medium">Role:</span> Frontend Development
@@ -50,7 +49,7 @@ export default function ProjectOverview() {
                 creating an intuitive and engaging user experience.
               </p>
             </div>
-            <div className="p-4 rounded-lg bg-background border border-orange-500/20">
+            <div className="p-4 rounded-xl bg-background border border-orange-500/20">
               <h3 className="text-xl font-medium mb-2 text-orange-500">Naman & Dhruv</h3>
               <p className="text-foreground/70 mb-2">
                 <span className="font-medium">Role:</span> Backend Architecture
@@ -60,8 +59,8 @@ export default function ProjectOverview() {
                 that powers the discovery capabilities and user interactions.
               </p>
             </div>
-            <div className="p-4 rounded-lg bg-background border border-orange-500/20">
-              <h3 className="text-xl font-medium mb-2 text-orange-500">Maini</h3>
+            <div className="p-4 rounded-xl bg-background border border-orange-500/20">
+              <h3 className="text-xl font-medium mb-2 text-orange-500">Manini</h3>
               <p className="text-foreground/70 mb-2">
                 <span className="font-medium">Role:</span> AI/ML Development
               </p>
