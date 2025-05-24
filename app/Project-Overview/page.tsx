@@ -19,7 +19,7 @@ export default function ProjectOverview() {
         </p>
 
         {/* Problem Statement Section */}
-        <div className="rounded-lg p-6 mb-8 transition-all duration-300 bg-background hover:bg-gradient-to-br hover:from-red-700/10 hover:to-gray-700/10 text-foreground border border-orange-500/30 shadow-sm">
+        <div className="rounded-xl p-6 mb-8 transition-all duration-300 bg-background hover:bg-gradient-to-br hover:from-red-700/10 hover:to-gray-700/10 text-foreground border border-orange-500/30 shadow-sm">
           <h2 className="text-2xl font-semibold mb-3 group-hover:text-orange-500 ">Problem Statement</h2>
           <div className="flex flex-col md:flex-row gap-6">
             <div>
@@ -36,7 +36,7 @@ export default function ProjectOverview() {
           </div>
         </div>
         {/* Team Members Section */}
-        <div className="rounded-lg p-6 mb-8 transition-all duration-300 bg-background hover:bg-gradient-to-br hover:from-red-700/10 hover:to-zinc-700/10 text-foreground border border-orange-500/30 shadow-sm">
+        <div className="rounded-xl p-6 mb-8 transition-all duration-300 bg-background hover:bg-gradient-to-br hover:from-red-700/10 hover:to-zinc-700/10 text-foreground border border-orange-500/30 shadow-sm">
           <h2 className="text-2xl font-bold mb-4">Our Team</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="p-4 rounded-xl bg-background border border-orange-500/20">
@@ -71,29 +71,37 @@ export default function ProjectOverview() {
             </div>
           </div>
         </div>
-        {/* Project Idea Section */}
-        <div className="rounded-lg p-6 mb-8 transition-all duration-300 bg-background hover:bg-gradient-to-br hover:from-orange-500/5 hover:to-red-500/10 text-foreground border border-orange-500/30 shadow-sm">
+        
+        {/* contained two divs here cause looks better idk*/}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <div className="rounded-xl p-6 mb-8 transition-all duration-300 bg-background hover:bg-gradient-to-br hover:from-red-700/10 hover:to-gray-700/10 text-foreground border border-orange-500/30 shadow-sm">
           <h2 className="text-2xl font-semibold mb-4">The Big Idea</h2>
-          <p className="text-foreground/70 mb-4">
-            Weve created a platform that helps college students discover valuable resources and opportunities
-            that are often hidden or scattered. Our solution brings together academic and extracurricular options
-            in one centralized place, making exploration beyond the standard curriculum simple and engaging.
-          </p>
+            <p className="text-foreground/70 mb-4">
+            The idea was to create something truly useful under the theme of Open Innovation. 
+            After several hours of planning, brainstorming, and debate, we settled on building a platform that leverages advanced 
+            computational methods—like VQE equations for calculating ground state energy—to empower users.
+            
+            </p>
         </div>
 
         {/* Origin Story Section */}
-        <div className="rounded-lg p-6 mb-8 transition-all duration-300 bg-background hover:bg-gradient-to-br hover:from-orange-500/5 hover:to-red-500/10 text-foreground border border-orange-500/30 shadow-sm">
+        <div className="rounded-xl p-6 mb-8 transition-all duration-300 bg-background hover:bg-gradient-to-br hover:from-red-700/10 hover:to-gray-700/10 text-foreground border border-orange-500/30 shadow-sm">
           <h2 className="text-2xl font-semibold mb-4">How We Got Started</h2>
           <p className="text-foreground/70 mb-4">
             Our idea emerged from personal frustrations with fragmented college resources. We realized many
             valuable opportunities exist but are difficult to discover. What started as a simple resource
             aggregator evolved into a comprehensive discovery platform to enhance the college experience.
+            <br />
+            <br />
+             Our goal is to make complex scientific tools accessible and to encourage exploration beyond traditional boundaries.
           </p>
         </div>
 
+        </div>
 
         {/* Impact Section */}
-        <div className="rounded-lg p-6 mb-8 transition-all duration-300 bg-background hover:bg-gradient-to-br hover:from-orange-500/5 hover:to-red-500/10 text-foreground border border-orange-500/30 shadow-sm">
+        <div className="rounded-xl p-6 mb-8 transition-all duration-300 bg-background hover:bg-gradient-to-br hover:from-red-700/10 hover:to-gray-700/10 text-foreground border border-orange-500/30 shadow-sm">
           <h2 className="text-2xl font-semibold mb-4">Impact & Vision</h2>
           <p className="text-foreground/70 mb-4">
             We believe our platform can fundamentally change how students experience college by breaking down
@@ -111,31 +119,31 @@ export default function ProjectOverview() {
         </div>
 
         {/* Features & Benefits Section */}
-        <div className="rounded-lg p-6 mb-8 transition-all duration-300 bg-background hover:bg-gradient-to-br hover:from-orange-500/5 hover:to-red-500/10 text-foreground border border-orange-500/30 shadow-sm">
+        <div className="rounded-xl p-6 mb-8 transition-all duration-300 bg-background hover:bg-gradient-to-br hover:from-red-700/10 hover:to-gray-700/10 text-foreground border border-orange-500/30 shadow-sm">
           <h2 className="text-2xl font-semibold mb-4">Key Features & Benefits</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="p-4 rounded-lg bg-background border border-orange-500/20">
+            <div className="p-4 rounded-lg bg-background border border-orange-500/20 shadow-2xl">
               <h3 className="text-xl font-medium mb-2 text-orange-500">Personalized Discovery</h3>
               <p className="text-foreground/70">
                 AI-powered recommendations that adapt to your interests, goals, and past engagement,
                 helping you discover opportunities youll actually care about.
               </p>
             </div>
-            <div className="p-4 rounded-lg bg-background border border-orange-500/20">
+            <div className="p-4 rounded-lg bg-background border border-orange-500/20 shadow-2xl">
               <h3 className="text-xl font-medium mb-2 text-orange-500">Community Curation</h3>
               <p className="text-foreground/70">
                 Student-sourced recommendations and reviews, creating a trusted ecosystem of peer insights about
                 resources, classes, and opportunities.
               </p>
             </div>
-            <div className="p-4 rounded-lg bg-background border border-orange-500/20">
+            <div className="p-4 rounded-lg bg-background border border-orange-500/20 shadow-2xl">
               <h3 className="text-xl font-medium mb-2 text-orange-500">Growth Tracking</h3>
               <p className="text-foreground/70">
                 Tools to document your journey, set goals, and track progress across both personal and
                 professional development areas.
               </p>
             </div>
-            <div className="p-4 rounded-lg bg-background border border-orange-500/20">
+            <div className="p-4 rounded-lg bg-background border border-orange-500/20 shadow-2xl">
               <h3 className="text-xl font-medium mb-2 text-orange-500">Connection Platform</h3>
               <p className="text-foreground/70">
                 Features that facilitate meaningful connections with peers, mentors, and alumni
