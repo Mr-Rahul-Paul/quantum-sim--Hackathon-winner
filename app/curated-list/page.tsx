@@ -75,7 +75,7 @@ const placeholderItems: CuratedItem[] = [
     description: 'Essential for life, covers most of Earth.',
     imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa20WTUQdMxY5b1JVVzVEIlJYfmmc0pWghdQ&s'
   },
-
+  
 
 
 ]
@@ -126,7 +126,7 @@ export default function CuratedListPage() {
           {filteredItems.map(item => (
             <div
               key={item.id}
-              className="rounded-lg p-6 transition-all duration-300 bg-background hover:bg-gradient-to-br hover:from-orange-500/5 hover:to-red-500/10 text-foreground border border-orange-500/30 shadow-sm hover:shadow-md hover:scale-[1.05]"
+              className="rounded-lg p-6 transition-all duration-300 bg-background hover:bg-gradient-to-br hover:from-red-700/10 hover:to-gray-700/10 text-foreground border border-orange-500/30 shadow-sm hover:shadow-md hover:scale-[1.05]"
             >
               <div className="flex items-start justify-between">
                 <div>
@@ -191,7 +191,7 @@ export default function CuratedListPage() {
 
         <div className="mt-12 pt-6 border-t border-foreground/20">
           <div className="flex justify-between w-full">
-            <Link href="/Project-Overview" className="text-foreground/60 hover:text-foreground transition-colors">
+            <Link href="/curated-list" className="text-foreground/60 hover:text-foreground transition-colors">
               &larr; To Overview
             </Link>
             <Link href="/simulation" className="text-foreground/60 hover:text-foreground transition-colors">
