@@ -50,7 +50,7 @@ This project was developed during a hackathon by **Team Bytes**.
 
 3. Start the backend server:
    ```bash
-   python main.py
+   python main.py #may only run on unix based os
    ```
 
 4. Start the frontend:
