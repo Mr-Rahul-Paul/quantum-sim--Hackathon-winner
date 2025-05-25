@@ -4,7 +4,7 @@
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   import Link from 'next/link';
   const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
-
+// region 
   // Define proper types for the data
   interface Atom {
     element: string;
@@ -553,7 +553,7 @@
             )}
           </div>
 
-          <div className="text-foreground/40 text-sm mt-8 justify-center text-center">
+          <div className="text-foreground/40 text-lg mt-8 justify-center text-center">
             • HackIIIT • Team - Bytes • <a className='underline hover:no-underline hover:font-bold' href='https://github.com/Qiskit/textbook/blob/main/notebooks/ch-applications/vqe-molecules.ipynb'>Click here to read research paper 📃</a>
           </div>
         </div>

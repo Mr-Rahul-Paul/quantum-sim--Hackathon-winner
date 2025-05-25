@@ -76,7 +76,7 @@ export default function HomePage() {
             <motion.div
               variants={fadeIn}
               className="p-6 border border-cyan-400/20 rounded-lg bg-zinc-800/50 backdrop-blur-sm"
-              whileHover={{ scale: 1.01, transition: { duration: 0.2 } }}
+              whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
             >
               <h3 className="text-yellow-500 text-lg font-mono mb-4">Project Overview</h3>
                 <p className="text-gray-300 mb-4 font-serif tracking-wide">
@@ -96,7 +96,7 @@ export default function HomePage() {
             <motion.div
               variants={fadeIn}
               className="p-6 border border-cyan-400/20 rounded-lg bg-zinc-800/50 backdrop-blur-sm"
-              whileHover={{ scale: 1.01, transition: { duration: 0.2 } }}
+              whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
             >
               <h3 className="text-yellow-600 text-lg font-mono mb-4">Molecular Interface</h3>
               <p className="text-gray-300 mb-4">
@@ -116,7 +116,7 @@ export default function HomePage() {
             <motion.div
               variants={fadeIn}
               className="p-6 border border-cyan-400/20 rounded-lg bg-zinc-800/50 backdrop-blur-sm"
-              whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+              whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
             >
               <h3 className="text-orange-500 text-lg font-mono mb-4">Simulation Core</h3>
               <div className="space-y-4">
@@ -144,7 +144,7 @@ export default function HomePage() {
           {/* Footer text */}
           <motion.p
             variants={fadeIn}
-            className="text-gray-400 text-sm mt-8"
+            className="text-gray-400 text-lg mt-8"
           >
             VQE simulation • HackIIIT • Team - Bytes  • <a className='underline hover:no-underline hover:font-bold' href='https://github.com/Qiskit/textbook/blob/main/notebooks/ch-applications/vqe-molecules.ipynb'>Click here to read reaseach paper 📃</a>
           </motion.p>
