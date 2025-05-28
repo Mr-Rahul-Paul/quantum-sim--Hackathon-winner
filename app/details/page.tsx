@@ -1,7 +1,7 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 
 interface ItemDetails {
@@ -10,10 +10,22 @@ interface ItemDetails {
     category: string;
     description: string;
     imageUrl: string;
-    applications?: string[]; // Add this to store the applications
-  }
+    applications?: string[];
+}
 
-export default function DetailsPage() {
+const DetailsPage = () => {
+  return (
+    <Suspense fallback={
+      <div className="flex justify-center items-center h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-500"></div>
+      </div>
+    }>
+      <DetailsContent />
+    </Suspense>
+  );
+}
+
+const DetailsContent = () => {
   const searchParams = useSearchParams();
   
   const [details, setDetails] = useState<ItemDetails>({
@@ -22,7 +34,7 @@ export default function DetailsPage() {
     category: '',
     description: '',
     imageUrl: '/placeholder.png',
-    applications: [], // Initialize empty array for applications
+    applications: [],
   });
   
   const [loading, setLoading] = useState(true);
@@ -199,3 +211,5 @@ export default function DetailsPage() {
     </main>
   );
 }
+
+export default DetailsPage;
