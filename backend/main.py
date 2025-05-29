@@ -30,7 +30,7 @@ import logging
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(_name_)
+logger = logging.getLogger(__name__)
 
 # Suppress warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
@@ -45,7 +45,7 @@ db = client["quantum-sim"] if client else None
 results_collection = db["results"] if db else None
 
 # Load ML model
-MODEL_PATH = os.path.join(os.path.dirname(_file_), "quantum_classical_predictor.joblib")
+MODEL_PATH = os.path.join(os.path.dirname(__file__), "quantum_classical_predictor.joblib")
 try:
     model = load(MODEL_PATH)
     logger.info("Successfully loaded trained model")
@@ -305,7 +305,7 @@ async def simulate_molecule(data: MoleculeInput):
         return result_data
     
     except Exception as e:
-        error_message = f"{type(e)._name_}: {str(e)}"
+        error_message = f"{type(e).__name__}: {str(e)}"
         logger.error(f"Simulation error: {error_message}")
         
         error_data = SimulationError(
@@ -377,7 +377,7 @@ async def get_model_info():
     
     try:
         model_info = {
-            "model_type": str(type(model)._name_),
+            "model_type": str(type(model).__name_),
             "n_features": model.n_features_in_ if hasattr(model, 'n_features_in_') else "Unknown",
             "classes": list(model.classes_) if hasattr(model, 'classes_') else "Unknown",
             "status": "loaded"
@@ -398,6 +398,6 @@ async def clear_cache():
         results_collection.delete_many({})
     return {"status": "success"}
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
