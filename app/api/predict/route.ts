@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
       confidence,
       features
     });
-  } catch (error: any) {
-    return NextResponse.json({ status: 'failed', error: error?.message || 'Internal server error' }, { status: 500 });
+  } catch (error) {
+    return NextResponse.json({ status: 'failed', error: error instanceof Error ? error.message : 'Internal server error' }, { status: 500 });
   }
 } 
