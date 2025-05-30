@@ -3,7 +3,28 @@
   import { useState } from "react";
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   import Link from 'next/link';
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8001';
+  import { Line } from 'react-chartjs-2';
+  import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend
+  } from 'chart.js';
+
+  ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend
+  );
+
 // region 
   // Define proper types for the data
   interface Atom {
@@ -41,6 +62,8 @@
     energy_plot?: string;
     elements?: string[];
     suggestion?: string;
+    distances?: number[];
+    energy_values?: number[];
   }
 
   export default function Home() {
@@ -94,8 +117,7 @@
       setError(null);
       setResults(null);
       try {
-        // To this
-        const res = await fetch(`${API_URL}/simulate/`, {
+        const res = await fetch('/api/simulate', {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ atoms, charge, spin }),
@@ -106,8 +128,7 @@
         } else {
           setResults(data);
         }
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      } catch (err) {
+      } catch {
         setError("Server connection failed");
       } finally {
         setLoading(false);
@@ -121,8 +142,7 @@
       setPrediction(null);
 
       try {
-        // Update: send as 'features' object for backend compatibility
-        const res = await fetch(`${API_URL}/predict/`, {
+        const res = await fetch('/api/predict', {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -390,12 +410,54 @@
                 <h2 className="text-2xl font-semibold mb-4 text-orange-500 flex items-center">
                   <span className="mr-2">📈</span> Energy Analysis
                 </h2>
-                {results.energy_plot ? (
-                  <div className="flex flex-col items-center">
-                    <img
-                      src={`data:image/png;base64,${results.energy_plot}`}
-                      alt="Energy vs Bond Distance"
-                      className="w-full h-96 object-contain border border-orange-500/20 rounded-lg bg-background p-4"
+                {results?.distances && results?.energy_values ? (
+                  <div className="flex flex-col items-center w-full">
+                    <Line
+                      data={{
+                        labels: results.distances.map((d) => d.toFixed(2)),
+                        datasets: [
+                          {
+                            label: 'Energy (Hartree)',
+                            data: results.energy_values,
+                            borderColor: 'rgb(255, 99, 132)',
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            tension: 0.1,
+                            fill: false,
+                            pointRadius: 5,
+                            pointHoverRadius: 7,
+                            pointBackgroundColor: 'rgb(255, 99, 132)',
+                            borderWidth: 3,
+                          },
+                        ],
+                      }}
+                      options={{
+                        responsive: true,
+                        plugins: {
+                          legend: { position: 'top' },
+                          title: {
+                            display: true,
+                            text: 'Potential Energy Surface',
+                            font: { size: 20, weight: 'bold' },
+                          },
+                        },
+                        scales: {
+                          x: {
+                            title: {
+                              display: true,
+                              text: 'Bond Distance (Å)',
+                              font: { size: 16, weight: 'bold' },
+                            },
+                          },
+                          y: {
+                            title: {
+                              display: true,
+                              text: 'Energy (Hartree)',
+                              font: { size: 16, weight: 'bold' },
+                            },
+                          },
+                        },
+                      }}
+                      className="w-full h-96 bg-background p-4 rounded-lg border border-orange-500/20"
                     />
                     <p className="mt-3 text-sm text-foreground/60">
                       Energy comparison across different bond distances
