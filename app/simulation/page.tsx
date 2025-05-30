@@ -3,7 +3,7 @@
   import { useState } from "react";
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   import Link from 'next/link';
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8001';
 // region 
   // Define proper types for the data
   interface Atom {
@@ -121,16 +121,18 @@
       setPrediction(null);
 
       try {
-        // To this
+        // Update: send as 'features' object for backend compatibility
         const res = await fetch(`${API_URL}/predict/`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            num_atoms: parseInt(predictionInput.num_atoms),
-            num_electrons: parseInt(predictionInput.num_electrons),
-            num_qubits: parseInt(predictionInput.num_qubits),
-            basis_set_size: parseInt(predictionInput.basis_set_size),
-            molecular_complexity: parseFloat(predictionInput.molecular_complexity)
+            features: {
+              num_atoms: parseInt(predictionInput.num_atoms),
+              num_electrons: parseInt(predictionInput.num_electrons),
+              num_qubits: parseInt(predictionInput.num_qubits),
+              basis_set_size: parseInt(predictionInput.basis_set_size),
+              molecular_complexity: parseFloat(predictionInput.molecular_complexity)
+            }
           }),
         });
 

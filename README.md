@@ -2,12 +2,6 @@
 
 This project is a **Quantum Molecule Simulator** built using [Next.js](https://nextjs.org) and [Qiskit](https://qiskit.org). It combines quantum computing and machine learning to simulate molecular properties and predict behaviors, providing an innovative platform for researchers and students.
 
-## Demo Video
-
-[![Quantum Molecule Simulator Demo](./assets/video-thumbnail.png)](./assets/winning-team-video.mov)
-
-(Download and view)
-
 ## Project Overview
 
 Our platform enables users to:
@@ -48,17 +42,32 @@ This project was developed during a hackathon by **Team Bytes**.
    npm install
    ```
 
-3. Start the backend server:
+3. Set up the backend:
+   - Navigate to the `backend` folder:
+     ```bash
+     cd backend
+     ```
+   - Create a `.env` file and add the following:
+     ```
+     MONGODB_ATLAS_URI=<your-mongodb-uri>
+     IBMQ_API_TOKEN=<your-ibm-quantum-api-token>
+     ```
+   - Install Python dependencies:
+     ```bash
+     pip install -r requirements.txt
+     ```
+
+4. Start the backend server:
    ```bash
-   python main.py #may only run on unix based os
+   python main.py
    ```
 
-4. Start the frontend:
+5. Start the frontend:
    ```bash
    npm run dev
    ```
 
-5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+6. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Usage
 
@@ -75,8 +84,12 @@ This project was developed during a hackathon by **Team Bytes**.
 
 ## Learn More
 
-- [Qiskit Documentation](https://qiskit.org/documentation/)
-- [Next.js Documentation](https://nextjs.org/docs) 
+- [Qiskit Documentation](https://qiskit.org/documentation/) - Learn about quantum computing with Qiskit.
+- [Next.js Documentation](https://nextjs.org/docs) - Learn about building web applications with Next.js.
+
+## Deploy on Vercel
+
+The easiest way to deploy this project is to use the [Vercel Platform](https://vercel.com). Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
 ## License
 
