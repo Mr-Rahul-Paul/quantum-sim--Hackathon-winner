@@ -389,7 +389,7 @@
                   {results.molecule_image ? (
                     <div className="flex flex-col items-center">
                       <img
-                        src={`data:image/png;base64,${results.molecule_image}`}
+                        src={`data:image/svg+xml;base64,${results.molecule_image}`}
                         alt={results.molecule_name || "Molecule structure"}
                         className="max-w-full h-64 object-contain border border-orange-500/20 rounded-lg bg-background"
                       />

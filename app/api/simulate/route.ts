@@ -1,6 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createCanvas, loadImage } from 'canvas';
-
 import initRDKitModule from '@rdkit/rdkit';
 
 interface AtomCoord {
@@ -43,11 +41,10 @@ function atomsToSMILES(atoms: AtomCoord[]): string {
   return atoms.map(a => a.element).join('');
 }
 
-// Helper: Generate molecule image using RDKit if possible
+// Helper: Generate molecule image using RDKit if possible, return SVG as base64
 async function generateMoleculeImage(atoms: AtomCoord[]): Promise<string> {
   try {
     const smiles = atomsToSMILES(atoms);
-    // Initialize RDKit
     const RDKitModule = await initRDKitModule;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const mol = (RDKitModule as any).get_mol(smiles);
@@ -56,27 +53,12 @@ async function generateMoleculeImage(atoms: AtomCoord[]): Promise<string> {
     }
     const svg = mol.get_svg(300, 300);
     mol.delete();
-    // Render SVG to PNG using canvas
-    const canvas = createCanvas(300, 300);
-    const ctx = canvas.getContext('2d');
-    // Load SVG as image
-    const svgBuffer = Buffer.from(svg);
-    const svgDataUrl = 'data:image/svg+xml;base64,' + svgBuffer.toString('base64');
-    const img = await loadImage(svgDataUrl);
-    ctx.drawImage(img, 0, 0, 300, 300);
-    return canvas.toDataURL('image/png').substring('data:image/png;base64,'.length);
+    // Return SVG as base64
+    return Buffer.from(svg).toString('base64');
   } catch {
-    // Fallback to placeholder
-    const canvas = createCanvas(300, 300);
-    const ctx = canvas.getContext('2d');
-    ctx.fillStyle = 'white';
-    ctx.fillRect(0, 0, 300, 300);
-    ctx.fillStyle = 'black';
-    ctx.font = '16px Arial';
-    ctx.textAlign = 'center';
-    ctx.fillText('Molecule Structure', 150, 150);
-    ctx.fillText(atoms.map((a) => a.element).join(' - '), 150, 180);
-    return canvas.toDataURL('image/png').substring('data:image/png;base64,'.length);
+    // Fallback: return a simple SVG placeholder as base64
+    const fallbackSvg = `<svg width='300' height='300' xmlns='http://www.w3.org/2000/svg'><rect width='300' height='300' fill='white'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='16' fill='black'>Molecule Structure</text></svg>`;
+    return Buffer.from(fallbackSvg).toString('base64');
   }
 }
 
