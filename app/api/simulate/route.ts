@@ -30,36 +30,192 @@ function validateAtoms(atoms: AtomCoord[]): void {
   }
 }
 
-// Helper: Convert atoms to SMILES (simple linear, assumes input order is correct and only single bonds)
+// Helper: Convert atoms to proper SMILES with better heuristics
 function atomsToSMILES(atoms: AtomCoord[]): string {
-  // This is a placeholder. For real chemistry, use a proper library or backend service.
-  // For H2O: [{element: 'O', ...}, {element: 'H', ...}, {element: 'H', ...}] => 'O(H)H'
-  if (atoms.length === 3 && atoms.filter(a => a.element === 'O').length === 1 && atoms.filter(a => a.element === 'H').length === 2) {
-    return 'O(H)H';
+  if (atoms.length === 0) return '';
+
+  // Handle common molecules
+  const elements = atoms.map(a => a.element);
+  const elementCounts = elements.reduce((acc, el) => {
+    acc[el] = (acc[el] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
+
+  // Water (H2O)
+  if (elementCounts.H === 2 && elementCounts.O === 1 && atoms.length === 3) {
+    return 'O';
   }
-  // Add more heuristics as needed
-  return atoms.map(a => a.element).join('');
+
+  // Hydrogen molecule (H2)
+  if (elementCounts.H === 2 && atoms.length === 2) {
+    return '[H][H]';
+  }
+
+  // Methane (CH4)
+  if (elementCounts.C === 1 && elementCounts.H === 4 && atoms.length === 5) {
+    return 'C';
+  }
+
+  // Ammonia (NH3)
+  if (elementCounts.N === 1 && elementCounts.H === 3 && atoms.length === 4) {
+    return 'N';
+  }
+
+  // Carbon dioxide (CO2)
+  if (elementCounts.C === 1 && elementCounts.O === 2 && atoms.length === 3) {
+    return 'O=C=O';
+  }
+
+  // Lithium hydride (LiH)
+  if (elementCounts.Li === 1 && elementCounts.H === 1 && atoms.length === 2) {
+    return '[Li][H]';
+  }
+
+  // For unknown molecules, try to create a simple chain
+  if (atoms.length === 1) {
+    return `[${atoms[0].element}]`;
+  }
+
+  // Create a simple linear structure for other cases
+  return atoms.map(a => `[${a.element}]`).join('-');
 }
 
-// Helper: Generate molecule image using RDKit if possible, return SVG as base64
+// Helper: Calculate distance between two atoms
+function calculateDistance(atom1: AtomCoord, atom2: AtomCoord): number {
+  return Math.sqrt(
+    Math.pow(atom1.x - atom2.x, 2) +
+    Math.pow(atom1.y - atom2.y, 2) +
+    Math.pow(atom1.z - atom2.z, 2)
+  );
+}
+
+// Helper: Generate custom molecule visualization
+function generateCustomMoleculeSVG(atoms: AtomCoord[]): string {
+  const width = 400;
+  const height = 400;
+  const centerX = width / 2;
+  const centerY = height / 2;
+
+  // Element colors
+  const elementColors: Record<string, string> = {
+    'H': '#FFFFFF',
+    'C': '#000000',
+    'N': '#0000FF',
+    'O': '#FF0000',
+    'F': '#00FF00',
+    'P': '#FFA500',
+    'S': '#FFFF00',
+    'Cl': '#00FFFF',
+    'Li': '#CC80FF',
+    'Be': '#C2FF00',
+    'B': '#FFB5B5',
+    'default': '#FF1493'
+  };  // Element radii (approximate van der Waals radii in pixels, scaled larger)
+  const elementRadii: Record<string, number> = {
+    'H': 12,
+    'C': 16,
+    'N': 14,
+    'O': 13,
+    'F': 12,
+    'P': 18,
+    'S': 15,
+    'Cl': 16,
+    'Li': 18,
+    'Be': 14,
+    'B': 15,
+    'default': 14
+  };
+
+  // Scale and center coordinates
+  if (atoms.length === 0) {
+    return `<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+      <rect width="${width}" height="${height}" fill="white" stroke="#ccc"/>
+      <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-size="16" fill="#666">No atoms</text>
+    </svg>`;
+  }
+  const minX = Math.min(...atoms.map(a => a.x));
+  const maxX = Math.max(...atoms.map(a => a.x));
+  const minY = Math.min(...atoms.map(a => a.y));
+  const maxY = Math.max(...atoms.map(a => a.y));  // Add padding and increase scale for larger appearance
+  const padding = 60;
+  const rangeX = maxX - minX || 2;
+  const rangeY = maxY - minY || 2;
+  const scale = Math.min((width - 2 * padding) / rangeX, (height - 2 * padding) / rangeY) * 1.2;
+
+  let svgContent = `<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+    <rect width="${width}" height="${height}" fill="white" stroke="#ddd"/>
+    <defs>
+      <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+        <feDropShadow dx="2" dy="2" stdDeviation="2" flood-opacity="0.3"/>
+      </filter>
+    </defs>`;
+
+  // Draw bonds (simple distance-based)
+  for (let i = 0; i < atoms.length; i++) {
+    for (let j = i + 1; j < atoms.length; j++) {
+      const distance = calculateDistance(atoms[i], atoms[j]);
+      // Draw bond if atoms are reasonably close (typical bond lengths 0.5-3.0 Å)
+      if (distance < 3.0) {
+        const x1 = centerX + (atoms[i].x - (minX + maxX) / 2) * scale;
+        const y1 = centerY - (atoms[i].y - (minY + maxY) / 2) * scale; // Flip Y
+        const x2 = centerX + (atoms[j].x - (minX + maxX) / 2) * scale;
+        const y2 = centerY - (atoms[j].y - (minY + maxY) / 2) * scale; // Flip Y
+
+        svgContent += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" 
+          stroke="#333" stroke-width="2" opacity="0.8"/>`;
+      }
+    }
+  }
+  // Draw atoms
+  atoms.forEach((atom) => {
+    const x = centerX + (atom.x - (minX + maxX) / 2) * scale;
+    const y = centerY - (atom.y - (minY + maxY) / 2) * scale; // Flip Y for proper orientation
+    const color = elementColors[atom.element] || elementColors.default;
+    const radius = elementRadii[atom.element] || elementRadii.default;
+
+    // Draw atom circle
+    svgContent += `<circle cx="${x}" cy="${y}" r="${radius}" 
+      fill="${color}" stroke="#333" stroke-width="1.5" filter="url(#shadow)"/>`;
+
+    // Draw element label
+    const textColor = atom.element === 'H' || color === '#FFFFFF' ? '#000' : '#FFF';
+    svgContent += `<text x="${x}" y="${y + 1}" text-anchor="middle" dominant-baseline="middle" 
+      font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="${textColor}">
+      ${atom.element}
+    </text>`;
+  });
+
+  // Add title
+  const moleculeName = atoms.map(a => a.element).join('');
+  svgContent += `<text x="20" y="30" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">
+    ${moleculeName} (${atoms.length} atoms)
+  </text>`;
+
+  svgContent += '</svg>';
+  return svgContent;
+}
+
+// Helper: Generate molecule image using custom visualization
 async function generateMoleculeImage(atoms: AtomCoord[]): Promise<string> {
   try {
+    // Try RDKit first for well-known molecules
     const smiles = atomsToSMILES(atoms);
     const RDKitModule = await initRDKitModule;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const mol = (RDKitModule as any).get_mol(smiles);
-    if (!mol || !mol.is_valid()) {
-      throw new Error('Invalid molecule for RDKit');
+
+    if (mol && mol.is_valid()) {
+      const svg = mol.get_svg(400, 400);
+      mol.delete();
+      return Buffer.from(svg).toString('base64');
     }
-    const svg = mol.get_svg(300, 300);
-    mol.delete();
-    // Return SVG as base64
-    return Buffer.from(svg).toString('base64');
-  } catch {
-    // Fallback: return a simple SVG placeholder as base64
-    const fallbackSvg = `<svg width='300' height='300' xmlns='http://www.w3.org/2000/svg'><rect width='300' height='300' fill='white'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='16' fill='black'>Molecule Structure</text></svg>`;
-    return Buffer.from(fallbackSvg).toString('base64');
+  } catch (error) {
+    console.log('RDKit failed, using custom visualization:', error);
   }
+
+  // Always fall back to custom visualization
+  const customSvg = generateCustomMoleculeSVG(atoms);
+  return Buffer.from(customSvg).toString('base64');
 }
 
 // Helper: Simulate single point energy (mock)
