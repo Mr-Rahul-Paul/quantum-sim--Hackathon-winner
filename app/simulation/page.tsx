@@ -70,7 +70,6 @@
     // Simulation states
     const [atoms, setAtoms] = useState<Atom[]>([
       { element: "H", x: 0.0, y: 0.0, z: 0.0 },
-      { element: "O", x: 0.96, y: 0.0, z: 0.0 },
       { element: "H", x: -0.24, y: 0.93, z: 0.0 },
     ]);
     const [charge, setCharge] = useState(0);
@@ -81,11 +80,11 @@
 
     // Prediction states
     const [predictionInput, setPredictionInput] = useState<PredictionInput>({
-      num_atoms: "",
-      num_electrons: "",
-      num_qubits: "",
-      basis_set_size: "",
-      molecular_complexity: ""
+      num_atoms: "5",
+      num_electrons: "20",
+      num_qubits: "12",
+      basis_set_size: "10",
+      molecular_complexity: "4"
     });
     const [prediction, setPrediction] = useState<PredictionResult | null>(null);
     const [predLoading, setPredLoading] = useState(false);
@@ -220,14 +219,15 @@
                 <button
                   onClick={addAtom}
                   className="w-full bg-orange-500 text-white py-2 px-4 rounded-lg transition flex items-center justify-center"
-                >
+                  >
                   <span className="mr-2">+</span> Add Atom
                 </button>
               </div>
             </div>
 
             <div className="space-y-4 mb-6">
-              <h3 className="text-lg font-medium text-orange-500">Atoms</h3>
+              <h3 className="text-lg font-medium text-orange-500">Atoms (default config of H-H)</h3>
+        
               {atoms.map((atom, index) => (
                 <div
                   key={index}
@@ -338,7 +338,7 @@
               )}
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="rounded-lg p-6 mb-8 transition-all duration-300 bg-background hover:bg-gradient-to-br hover:from-orange-500/5 hover:to-red-500/10 text-foreground border border-orange-500/30 shadow-sm">
+                <div className="rounded-lg p-6 mb-8 transition-all duration-300 bg-background hover:bg-gradient-to-br  hover:from-red-700/10 hover:to-gray-700/10 text-foreground border border-orange-500/30 shadow-sm">
                   <h2 className="text-2xl font-semibold mb-4 text-orange-500 flex items-center">
                     <span className="mr-2">📊</span> Simulation Results
                   </h2>
@@ -382,7 +382,7 @@
                   </div>
                 </div>
 
-                <div className="rounded-lg p-6 mb-8 transition-all duration-300 bg-background hover:bg-gradient-to-br hover:from-orange-500/5 hover:to-red-500/10 text-foreground border border-orange-500/30 shadow-sm">
+                <div className="rounded-lg p-6 mb-8 transition-all duration-300 bg-background hover:bg-gradient-to-br  hover:from-red-700/12 hover:to-gray-700/12 text-foreground border border-orange-500/30 shadow-sm">
                   <h2 className="text-2xl font-semibold mb-4 text-orange-500 flex items-center">
                     <span className="mr-2">🔬</span> Molecular Structure
                   </h2>
@@ -406,7 +406,7 @@
               </div>
 
               {/* Energy Plot Section */}
-              <div className="rounded-lg p-6 mb-8 transition-all duration-300 bg-background hover:bg-gradient-to-br hover:from-orange-500/5 hover:to-red-500/10 text-foreground border border-orange-500/30 shadow-sm">
+              <div className="rounded-lg p-6 mb-8 transition-all duration-300 bg-background hover:bg-gradient-to-br  hover:from-red-700/12 hover:to-gray-700/12 text-foreground border border-orange-500/30 shadow-sm">
                 <h2 className="text-2xl font-semibold mb-4 text-orange-500 flex items-center">
                   <span className="mr-2">📈</span> Energy Analysis
                 </h2>
@@ -577,7 +577,7 @@
             )}
 
             {prediction && (
-              <div className="mt-4 rounded-lg p-4 transition-all duration-300 bg-background text-foreground border border-orange-500/30 shadow-sm">
+              <div className="mt-4 rounded-lg p-4 duration-300 bg-background text-foreground border border-orange-500/30 shadow-sm">
                 <h3 className="font-bold text-orange-500 mb-2">Prediction Result</h3>
                 <div className={`p-3 rounded-lg ${prediction.prediction === "Quantum"
                   ? "bg-purple-900/20 border border-purple-500/30"
