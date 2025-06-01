@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createCanvas } from 'canvas';
+import { createCanvas, loadImage } from 'canvas';
+
+import initRDKitModule from '@rdkit/rdkit';
 
 interface AtomCoord {
   element: string;
@@ -30,18 +32,52 @@ function validateAtoms(atoms: AtomCoord[]): void {
   }
 }
 
-// Helper: Generate molecule image (placeholder)
-function generateMoleculeImage(atoms: AtomCoord[]): string {
-  const canvas = createCanvas(300, 300);
-  const ctx = canvas.getContext('2d');
-  ctx.fillStyle = 'white';
-  ctx.fillRect(0, 0, 300, 300);
-  ctx.fillStyle = 'black';
-  ctx.font = '16px Arial';
-  ctx.textAlign = 'center';
-  ctx.fillText('Molecule Structure', 150, 150);
-  ctx.fillText(atoms.map((a) => a.element).join(' - '), 150, 180);
-  return canvas.toDataURL('image/png').substring('data:image/png;base64,'.length);
+// Helper: Convert atoms to SMILES (simple linear, assumes input order is correct and only single bonds)
+function atomsToSMILES(atoms: AtomCoord[]): string {
+  // This is a placeholder. For real chemistry, use a proper library or backend service.
+  // For H2O: [{element: 'O', ...}, {element: 'H', ...}, {element: 'H', ...}] => 'O(H)H'
+  if (atoms.length === 3 && atoms.filter(a => a.element === 'O').length === 1 && atoms.filter(a => a.element === 'H').length === 2) {
+    return 'O(H)H';
+  }
+  // Add more heuristics as needed
+  return atoms.map(a => a.element).join('');
+}
+
+// Helper: Generate molecule image using RDKit if possible
+async function generateMoleculeImage(atoms: AtomCoord[]): Promise<string> {
+  try {
+    const smiles = atomsToSMILES(atoms);
+    // Initialize RDKit
+    const RDKitModule = await initRDKitModule;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const mol = (RDKitModule as any).get_mol(smiles);
+    if (!mol || !mol.is_valid()) {
+      throw new Error('Invalid molecule for RDKit');
+    }
+    const svg = mol.get_svg(300, 300);
+    mol.delete();
+    // Render SVG to PNG using canvas
+    const canvas = createCanvas(300, 300);
+    const ctx = canvas.getContext('2d');
+    // Load SVG as image
+    const svgBuffer = Buffer.from(svg);
+    const svgDataUrl = 'data:image/svg+xml;base64,' + svgBuffer.toString('base64');
+    const img = await loadImage(svgDataUrl);
+    ctx.drawImage(img, 0, 0, 300, 300);
+    return canvas.toDataURL('image/png').substring('data:image/png;base64,'.length);
+  } catch {
+    // Fallback to placeholder
+    const canvas = createCanvas(300, 300);
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, 300, 300);
+    ctx.fillStyle = 'black';
+    ctx.font = '16px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText('Molecule Structure', 150, 150);
+    ctx.fillText(atoms.map((a) => a.element).join(' - '), 150, 180);
+    return canvas.toDataURL('image/png').substring('data:image/png;base64,'.length);
+  }
 }
 
 // Helper: Simulate single point energy (mock)
@@ -95,7 +131,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ status: 'error', error: 'Charge and spin must be numbers.' }, { status: 400 });
     }
     const simulationOutput = simulateSinglePointEnergy(body);
-    const moleculeImage = generateMoleculeImage(body.atoms);
+    const moleculeImage = await generateMoleculeImage(body.atoms);
     return NextResponse.json({
       status: 'success',
       source: 'calculation',
