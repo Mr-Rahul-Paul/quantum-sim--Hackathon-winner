@@ -1,96 +1,56 @@
-# Quantum Molecule Simulator
+# VQE Equations Simulation - Hackathon Winner 🏆
 
-This project is a **Quantum Molecule Simulator** built using [Next.js](https://nextjs.org) and [Qiskit](https://qiskit.org). It combines quantum computing and machine learning to simulate molecular properties and predict behaviors, providing an innovative platform for researchers and students.
+Deployed Version-> (https://quantum-sim-hackathon-winner.vercel.app)
 
-## Project Overview
+[My X account](https://x.com/_Rahul_Paul)
 
-Our platform enables users to:
-- Simulate molecular energy curves using quantum algorithms like VQE (Variational Quantum Eigensolver).
-- Predict molecular behavior using a trained machine learning model.
-- Visualize molecular structures and energy plots.
-- Explore curated lists of elements and molecules with detailed insights.
+## Overview
 
-This project was developed during a hackathon by **Team Bytes**.
+This project simulates Variational Quantum Eigensolver (VQE) equations for molecular structures. It provides an interactive interface for quantum chemistry simulations.
 
-## Features
+## Tech Stack
 
-- **Quantum Simulations**: Leverage IBM Quantum services or local simulators to compute molecular properties.
-- **Machine Learning Predictions**: Predict molecular behavior based on complexity, qubits, and other features.
-- **Interactive UI**: A user-friendly interface to explore curated molecules and run simulations.
-- **Caching**: Efficient caching of results to reduce redundant computations.
-- **Visualization**: Generate molecular images and energy plots for better understanding.
+- Next.js (Frontend Framework)
+- Framer Motion (Animations)
+- TypeScript
+- IBM Quantum Computing APIs
+- AI Model Integration
 
-## Getting Started
+## Quick Start
 
-### Prerequisites
+```bash
+git clone https://github.com/your-repo/quantum-sim
+npm install
+npm run dev
+```
 
-- Node.js (v16 or later)
-- Python (v3.9 or later)
-- MongoDB (for caching simulation results)
-- IBM Quantum API Token (optional for quantum hardware simulations)
+## Technical Details
 
-### Installation
+- Backend communicates with IBM's quantum computing servers via POST requests
+- AI model trained on mock molecular data for enhanced predictions
+- Real-time simulation results visualization
+- Optimized for quantum chemistry calculations
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-repo/quantum-molecule-simulator.git
-   cd quantum-molecule-simulator
-   ```
+## Architecture
 
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+The system uses a TypeScript-based API layer for improved UX and deployment efficiency. The backend processes quantum calculations and interfaces with IBM's quantum computing infrastructure.
 
-3. Set up the backend:
-   - Navigate to the `backend` folder:
-     ```bash
-     cd backend
-     ```
-   - Create a `.env` file and add the following:
-     ```
-     MONGODB_ATLAS_URI=<your-mongodb-uri>
-     IBMQ_API_TOKEN=<your-ibm-quantum-api-token>
-     ```
-   - Install Python dependencies:
-     ```bash
-     pip install -r requirements.txt
-     ```
+## Team Collaboration
 
-4. Start the backend server:
-   ```bash
-   python main.py
-   ```
+This project was developed as a team effort for HackIIIT. Original project files and documentation can be found in our [GitHub Repository](https://github.com/your-repo/quantum-sim).
 
-5. Start the frontend:
-   ```bash
-   npm run dev
-   ```
+## Environment Variables
 
-6. Open [http://localhost:3000](http://localhost:3000) in your browser.
+```
+NEXT_PUBLIC_API_URL=http://localhost:8000
+MONGODB_ATLAS_URI=<your-mongodb-uri>
+IBMQ_API_TOKEN=<your-ibm-quantum-api-token>
+```
 
-## Usage
+## Research
 
-- **Curated List**: Browse a collection of elements and molecules with detailed descriptions.
-- **Simulations**: Navigate to the simulation page to run quantum simulations or make predictions.
-- **Details Page**: View detailed information about a specific molecule or element.
+For detailed technical information, refer to the [Qiskit Textbook](https://github.com/Qiskit/textbook/blob/main/notebooks/ch-applications/vqe-molecules.ipynb).
 
-## Team
 
-- **Frontend Development**: Designed and implemented the UI using React and TailwindCSS.
-- **Backend Development**: Built the API for simulations and predictions using FastAPI and Qiskit.
-- **Machine Learning**: Developed the ML model for molecular behavior predictions.
-- **Visualization**: Created molecular images and energy plots for better insights.
+<small>Note: For improved UX and deployment purposes, the backend server was ported to a TypeScript API. Original files are available at [GitHub Repository](https://github.com/your-repo/quantum-sim).</small>
 
-## Learn More
-
-- [Qiskit Documentation](https://qiskit.org/documentation/) - Learn about quantum computing with Qiskit.
-- [Next.js Documentation](https://nextjs.org/docs) - Learn about building web applications with Next.js.
-
-## Deploy on Vercel
-
-The easiest way to deploy this project is to use the [Vercel Platform](https://vercel.com). Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-## License
-
-This project is licensed under the MIT License.
