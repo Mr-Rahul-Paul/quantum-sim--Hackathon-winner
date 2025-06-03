@@ -1,6 +1,6 @@
 # VQE Equations Simulation - Hackathon Winner 🏆
 
-Deployed Version-> (https://quantum-sim-hackathon-winner.vercel.app)
+Deployed Version-> (https://quantum-sim-hack-iiitv.vercel.app)
 
 [My X account](https://x.com/_Rahul_Paul)
 
