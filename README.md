@@ -7,6 +7,7 @@ Deployed Version-> (https://quantum-sim-hackathon-winner.vercel.app)
 ## Overview
 
 This project simulates Variational Quantum Eigensolver (VQE) equations for molecular structures. It provides an interactive interface for quantum chemistry simulations.
+This project won us HackIIIT.
 
 ## Tech Stack
 
@@ -19,7 +20,7 @@ This project simulates Variational Quantum Eigensolver (VQE) equations for molec
 ## Quick Start
 
 ```bash
-git clone https://github.com/your-repo/quantum-sim
+git clone https://github.com/Mr-Rahul-Paul/quantum-sim-HackIIITV
 npm install
 npm run dev
 ```
@@ -37,7 +38,7 @@ The system uses a TypeScript-based API layer for improved UX and deployment effi
 
 ## Team Collaboration
 
-This project was developed as a team effort for HackIIIT. Original project files and documentation can be found in our [GitHub Repository](https://github.com/your-repo/quantum-sim).
+This project was developed as a team effort for HackIIIT. Original project files and documentation can be found in our [GitHub Repository](https://github.com/DhRUVwol/quantum-hackathon.git).
 
 ## Environment Variables
 
@@ -52,5 +53,5 @@ IBMQ_API_TOKEN=<your-ibm-quantum-api-token>
 For detailed technical information, refer to the [Qiskit Textbook](https://github.com/Qiskit/textbook/blob/main/notebooks/ch-applications/vqe-molecules.ipynb).
 
 
-<small>Note: For improved UX and deployment purposes, the backend server was ported to a TypeScript API. Original files are available at [GitHub Repository](https://github.com/your-repo/quantum-sim).</small>
+<small>Note: For improved UX and deployment purposes, the backend server was ported to a TypeScript API(s). Original files are available at [GitHub Repository](https://github.com/DhRUVwol/quantum-hackathon.git).</small>
 

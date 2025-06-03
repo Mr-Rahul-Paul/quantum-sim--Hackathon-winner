@@ -129,7 +129,7 @@ export default function HomePage() {
                   Start Simulating
                 </motion.button>
                 <motion.button
-                onClick={() => alert("9873789881")}
+                onClick={() => alert("contact me : rpaul29120@gmail.com")}
                   className="w-full px-4 py-2 border border-orange-400 rounded-xl font-medium transition-colors"
                   whileHover={{ borderColor: "#f87171", scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
