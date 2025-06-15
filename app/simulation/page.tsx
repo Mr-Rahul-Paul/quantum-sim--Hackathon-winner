@@ -183,8 +183,8 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center p-6 md:p-24">
-      <div className="z-10 max-w-6xl w-full">
+    <main className="flex min-h-screen flex-col items-center p-6 md:p-24 bg-gradient-to-b from-black to-orange-900/20">
+      <div className="z-10 max-w-6xl w-full ">
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-amber-500 to-red-500 bg-clip-text text-transparent">
           Quantum Chemistry Lab
         </h1>
