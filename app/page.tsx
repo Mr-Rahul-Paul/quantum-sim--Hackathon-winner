@@ -220,7 +220,7 @@ export default function HomePage() {
             </motion.div>
           </motion.div>
         </section>
-        <Section className="py-24 bg-gradient-to-b from-black to-gray-900 h-screen">
+        <Section className="py-24 bg-gradient-to-b from-black to-gray-900 min-h-screen">
           <div className="max-w-7xl mx-auto px-6 md:px-12">
             <motion.div className="text-center mb-20">
               <h2 className="text-4xl md:text-5xl font-light text-white mb-6 tracking-tight">
@@ -232,11 +232,11 @@ export default function HomePage() {
               </p>
             </motion.div>
 
-            <div className=" grid grid-cols-3 md:grid-cols-3 gap-8 lg:gap-8">
+            <div className=" grid sm:grid-cols-1 md:grid-cols-3 gap-8 lg:gap-8">
               {/* card 1 */}
               <motion.div
                 variants={scaleIn}
-                className=" p-8 lg:p-10 bg-gradient-to-br from-zinc-800/50 to-zinc-900/50 rounded-3xl border border-yellow-400/20 hover:border-yellow-400/40 hover:shadow-xl shadow-yellow-400/20 "
+                className=" p-12 lg:p-10 bg-gradient-to-br from-zinc-800/50 to-zinc-900/50 rounded-3xl border border-yellow-400/20 hover:border-yellow-400/40 hover:shadow-xl shadow-yellow-400/20 "
                 whileHover={{ y: -8 }}
               >
                 <div className="w-14 h-14 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl mb-8 flex items-center justify-center shadow-lg">
@@ -382,8 +382,8 @@ export default function HomePage() {
         </Section>
         {/* third section */}
 
-        <Section className="py-24 bg-gradient-to-b from-gray-900 to-black">
-          <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <Section className="py-24 bg-gradient-to-b from-gray-900 to-black ">
+          <div className="max-w-7xl mx-auto px-15 md:px-12 sm:mt-20">
             <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
               {/* Content */}
               <motion.div className="space-y-8">
@@ -542,14 +542,14 @@ export default function HomePage() {
                 </a>
               </div>
               <div className="flex justify-center items-center">
-              <a
-                href="https://github.com/Mr-Rahul-Paul/quantum-sim-HackIIITV"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaGithub className="text-white w-6 h-6 hover:text-orange-600 transition cursor-pointer" />
-              </a>
-            </div>
+                <a
+                  href="https://github.com/Mr-Rahul-Paul/quantum-sim-HackIIITV"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaGithub className="text-white w-6 h-6 hover:text-orange-600 transition cursor-pointer" />
+                </a>
+              </div>
             </motion.div>
           </div>
         </Section>
