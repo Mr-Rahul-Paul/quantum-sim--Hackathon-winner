@@ -10,20 +10,10 @@ export default function HomePage() {
   const containerRef = useRef(null);
   const heroRef = useRef(null);
 
-  // const { scrollYProgress } = useScroll({
-  //   target: containerRef,
-  //   offset: ["start start", "end start"]
-  // });
-
-  // const heroParallax = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  // const heroOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
-  // const heroScale = useTransform(scrollYProgress, [0, 0.3], [1, 0.95]);
-
   const redirect2 = () => router.push("/simulation");
   const redirect1 = () => router.push("/curated-list");
   const redirect3 = () => router.push("/Project-Overview");
 
-  // Apple-style animation variants
   const fadeInUp = {
     hidden: { opacity: 0, y: 40 },
     visible: {
@@ -31,7 +21,7 @@ export default function HomePage() {
       y: 0,
       transition: {
         duration: 0.8,
-        ease: [0.25, 0.4, 0.25, 1], // Apple's signature easing
+        ease: [0.25, 0.4, 0.25, 1],
       },
     },
   };
@@ -59,7 +49,7 @@ export default function HomePage() {
     },
   };
 
-  // Section component with Apple-style reveal
+
   const Section = ({
     children,
     className = "",
@@ -74,7 +64,7 @@ export default function HomePage() {
       <motion.section
         ref={ref}
         initial={{ opacity: 0, y: 60 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
+        animate={isInView ? { opacity: 1, y: 60 } : { opacity: 1, y: 60 }} // little ambiguity remain here for me 
         transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
         className={className}
       >
@@ -341,13 +331,45 @@ export default function HomePage() {
               >
                 <div className="w-14 h-14 bg-gradient-to-br from-orange-400 to-red-500 rounded-2xl mb-8 flex items-center justify-center shadow-lg">
                   <svg
-                    className="w-7 h-7 text-white"
+                    className="w-8 h-8 text-white"
                     fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  ></svg>
+                    viewBox="0 0 32 32"
+                  >
+                    <circle cx="16" cy="16" r="4" fill="#fb923c" />
+                    <ellipse
+                      cx="16"
+                      cy="16"
+                      rx="11"
+                      ry="5"
+                      stroke="#fff"
+                      strokeWidth="2"
+                      opacity="0.9"
+                    />
+                    <ellipse
+                      cx="16"
+                      cy="16"
+                      rx="5"
+                      ry="11"
+                      stroke="#fde68a"
+                      strokeWidth="2"
+                      opacity="0.8"
+                      transform="rotate(30 16 16)"
+                    />
+                    <ellipse
+                      cx="16"
+                      cy="16"
+                      rx="11"
+                      ry="5"
+                      stroke="#f87171"
+                      strokeWidth="2"
+                      opacity="0.8"
+                      transform="rotate(60 16 16)"
+                    />
+                    <circle cx="27" cy="16" r="1.6" fill="#fde68a" />
+                    <circle cx="16" cy="5" r="1.6" fill="#f87171" />
+                    <circle cx="16" cy="27" r="1.6" fill="#fff" />
+                  </svg>
                 </div>
-
                 <h3 className="text-2xl font-medium text-orange-400 mb-4">
                   Quantum Engine
                 </h3>
